@@ -10,6 +10,7 @@
 #   https://dev.mysql.com/doc/refman/5.7/en/password-hashing.html
 #
 default: &default
+  database: MordorBlog
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -49,6 +50,4 @@ test:
 #
 production:
   <<: *default
-  database: MordorBlog_production
-  username: MordorBlog
   password: <%= ENV['MORDORBLOG_DATABASE_PASSWORD'] %>
