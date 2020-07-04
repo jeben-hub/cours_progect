@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MordorMySQL</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+      <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to "Mordor", root_path %></h5>
+      <% if current_user %>
+        <nav class="my-2 my-md-0 mr-md-3">
+          <span><%= link_to current_user.name, current_user %></span>
+        </nav>
+        <%= link_to 'Log Out', log_out_url, :class => 'btn btn-btn btn-primary btn-xs', method: :delete %>
+      <% else %>
+        <%= link_to 'Log In', log_in_url, :class => 'btn btn-btn btn-primary btn-xs' %>
+        <%= link_to 'Sign up', sign_up_url, :class => 'btn btn-btn btn-primary btn-xs' %>
+      <% end %>
+    </div>
+    <% if notice %>
+      <p class="alert alert-success"><%= notice %></p>
+    <% end %>
+    <% if alert %>
+      <p class="alert alert-danger"><%= alert %></p>
+    <% end %>
+
+    <%= yield %>
+  </body>
+</html>

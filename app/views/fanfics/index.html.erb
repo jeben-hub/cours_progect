@@ -1,0 +1,27 @@
+<h1>Fanfics</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Genre</th>
+      <th>User</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @fanfics.each do |fanfic| %>
+      <tr>
+        <td><%= link_to fanfic.title, fanfic %></td>
+        <td><%= fanfic.description %></td>
+        <td><%= fanfic.genre %></td>
+        <td><%= link_to fanfic_user(fanfic).name, fanfic_user(fanfic) %></td>
+        <td><%= link_to 'Edit', edit_fanfic_path(fanfic) %></td>
+        <td><%= link_to 'Destroy', fanfic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

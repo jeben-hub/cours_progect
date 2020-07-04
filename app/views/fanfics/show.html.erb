@@ -1,0 +1,22 @@
+<p>
+  <strong>Title:</strong>
+  <%= @fanfic.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @fanfic.description %>
+</p>
+
+<p>
+  <strong>Genre:</strong>
+  <%= @fanfic.genre %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @fanfic.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_fanfic_path(@fanfic) %> |
+<%= link_to 'Back', fanfics_path %>
