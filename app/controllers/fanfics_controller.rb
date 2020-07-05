@@ -1,7 +1,9 @@
 class FanficsController < ApplicationController
+  include ApplicationHelper
   before_action :set_fanfic, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
-
+  before_action :require_asses_to_existing_fanfics, only: [:destroy, :edit, :update]
+  before_action :require_asses_to_new_fanfics, only: [:new, :create]
   # GET /fanfics
   # GET /fanfics.json
   def index
@@ -16,6 +18,7 @@ class FanficsController < ApplicationController
   # GET /fanfics/new
   def new
     @fanfic = Fanfic.new
+    @user_id = params[:user_id]
   end
 
   # GET /fanfics/1/edit
@@ -26,7 +29,6 @@ class FanficsController < ApplicationController
   # POST /fanfics.json
   def create
     @fanfic = Fanfic.new(fanfic_params)
-    @fanfic.user_id = current_user.id
 
     respond_to do |format|
       if @fanfic.save
@@ -71,7 +73,17 @@ class FanficsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fanfic_params
-      params.require(:fanfic).permit(:title, :description, :genre, :user_id)
+      params.permit(:title, :description, :genre, :user_id)
+    end
+
+    def require_asses_to_new_fanfics
+      return if current_user.id == params[:user_id].to_i || current_user.admin?
+      redirect_back_or_to root_path, alert: 'You have no asses to do this'
+    end
+
+    def require_asses_to_existing_fanfics
+      return if current_user.id == @fanfic.author.id || current_user.admin?
+      redirect_back_or_to root_path, alert: 'You have no asses to do this'
     end
 
 end

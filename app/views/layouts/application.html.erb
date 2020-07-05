@@ -22,12 +22,10 @@
         <%= link_to 'Sign up', sign_up_url, :class => 'btn btn-btn btn-primary btn-xs' %>
       <% end %>
     </div>
-    <% if notice %>
-      <p class="alert alert-success"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert alert-danger"><%= alert %></p>
-    <% end %>
+    <% flash.each do |name, msg| -%>
+      <%= content_tag :div, msg, class: name %>
+    <% end -%>
+    
 
     <%= yield %>
   </body>

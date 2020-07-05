@@ -5,4 +5,12 @@ class User < ApplicationRecord
   validates :password, confirmation: true
   validates :email, uniqueness: true, email_format: { message: 'has invalid format' }
   validates :name, uniqueness: true
+
+  def self.admin?
+    self.admin
+  end
+
+  def self.blocked?
+    self.blocked
+  end
 end
