@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   get '/fanfics', to: 'fanfics#index'
   root 'fanfics#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :users, only: [:new, :show, :create, :destroy] do
+  resources :users do
     member do
       get :activate
     end
