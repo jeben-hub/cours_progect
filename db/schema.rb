@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_094152) do
+ActiveRecord::Schema.define(version: 2020_07_06_130458) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "body"
@@ -41,6 +41,10 @@ ActiveRecord::Schema.define(version: 2020_07_06_094152) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
     t.boolean "blocked", default: false
+    t.string "activation_state"
+    t.string "activation_token"
+    t.datetime "activation_token_expires_at"
+    t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

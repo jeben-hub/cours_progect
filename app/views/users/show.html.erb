@@ -15,7 +15,7 @@
         <td><%= link_to fanfic.title, fanfic_path(fanfic) %></td>
         <td><%= fanfic.description %></td>
         <td><%= fanfic.genre %></td>
-        <% if has_access?(@user) %>
+        <% if has_access?(@user.id) %>
           <td><%= link_to 'Edit', edit_fanfic_path(fanfic) %></td>
           <td><%= link_to 'Destroy', fanfic_path(fanfic), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         <% end %>
@@ -24,4 +24,8 @@
   </tbody>
 </table>
 
-<%= link_to 'New Fanfic', new_user_fanfic_path(@user) if has_access?(@user) %>
+
+<% if has_access?(@user.id) %>
+  <%= link_to 'New Fanfic', new_user_fanfic_path(@user) %>
+  <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>

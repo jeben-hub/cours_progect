@@ -77,12 +77,12 @@ class FanficsController < ApplicationController
     end
 
     def require_asses_to_new_fanfics
-      return if current_user.id == params[:user_id].to_i || current_user.admin?
+      return if has_access?(params[:user_id].to_i)
       redirect_back_or_to root_path, alert: 'You have no asses to do this'
     end
 
     def require_asses_to_existing_fanfics
-      return if current_user.id == @fanfic.author.id || current_user.admin?
+      return if has_access?(@fanfic.author.id)
       redirect_back_or_to root_path, alert: 'You have no asses to do this'
     end
 
