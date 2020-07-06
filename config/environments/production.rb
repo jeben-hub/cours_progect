@@ -61,7 +61,19 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "MordorBlog_production"
 
   config.action_mailer.perform_caching = false
-  config.action_mailer.default_url_options = { :host => 'majestic-grand-canyon-79796.heroku.com' }
+
+  config.action_mailer.delivery_method = :sendmail
+  # Defaults to:
+  # config.action_mailer.sendmail_settings = {
+  #   location: '/usr/sbin/sendmail',
+  #   arguments: '-i'
+  # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'no-reply@example.com'}
+  config.action_mailer.default_url_options = { :host => 'yourapp.heroku.com' }
+
+
 
 
   # Ignore bad email addresses and do not raise email delivery errors.
