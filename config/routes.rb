@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   root 'fanfics#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users do
-    resources :fanfics, except: [:index], shallow: true
+    resources :fanfics, except: [:index], shallow: true do
+      resources :comments, only: [:create, :index, :destroy]
+    end
   end
   get '/sign_up', to: 'users#new', as: :sign_up
   resources :sessions, only: [:new, :create, :destroy]
