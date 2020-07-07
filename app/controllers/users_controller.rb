@@ -36,11 +36,10 @@ class UsersController < ApplicationController
     if @user = User.load_from_activation_token(params[:id])
       @user.activate!
       flash[:success] = 'User was successfully activated.'
-      redirect_to log_in_path
     else
       flash[:warning] = 'Cannot activate this user.'
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   private
