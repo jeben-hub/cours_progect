@@ -10,7 +10,7 @@ module MordorBlog
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0
-    raw_config = File.read("#{Rails.root}/config/app_config.yml")
+    raw_config = File.read("#{Rails.root}/config/email.yml")
     APP_CONFIG = YAML.load(raw_config)[Rails.env].symbolize_keys
 
     # Settings in config/environments/* take precedence over those specified here.
