@@ -66,8 +66,8 @@ Rails.application.configure do
       :address              => 'smtp.gmail.com',
       :port                 => 587,
       :domain               => 'gmail.com',
-      :user_name            => 'fanficmordor',#Rails.application.credentials.mail[:user_name],
-      :password             => 'master_3791',#Rails.application.credentials.mail[:password],
+      :user_name            => Rails.application.credentials.mail[:user_name],
+      :password             => Rails.application.credentials.mail[:password],
       :authentication       => 'login',
       :enable_starttls_auto => true
   }
