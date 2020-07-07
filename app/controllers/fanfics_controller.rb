@@ -3,7 +3,7 @@ class FanficsController < ApplicationController
   before_action :set_fanfic, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
   before_action :require_asses_to_fanfics, except: [:index, :show]
-  before_action :require_active, only: [:new, :create]
+  before_action :require_activate, only: [:new, :create]
   # GET /fanfics
   # GET /fanfics.json
   def index
@@ -83,7 +83,7 @@ class FanficsController < ApplicationController
     end
 
     def require_activate
-      return# if "active" == User.find(params[:user_id]).activation_state
+      return if "active" == User.find(params[:user_id]).activation_state
       redirect_back_or_to root_path, alert: 'You have to activate your account'
     end
 
