@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  skip_before_action :require_login, only: [:new, :create, :activate]
+  skip_before_action :require_login, only: [:new, :create, :activate, :show]
+
+
 
   def new
     @user = User.new
@@ -15,6 +17,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(params[:user][:email], params[:user][:password])
+      flash[:success] = 'Confirm mail was send to ' + params[:user][:email]
       redirect_to root_path
     else
       render 'new'
@@ -35,11 +38,10 @@ class UsersController < ApplicationController
     if @user = User.load_from_activation_token(params[:id])
       @user.activate!
       flash[:success] = 'User was successfully activated.'
-      redirect_to log_in_path
     else
       flash[:warning] = 'Cannot activate this user.'
-      redirect_to root_path
     end
+    redirect_to root_path
   end
 
   private
