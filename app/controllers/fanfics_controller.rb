@@ -83,7 +83,7 @@ class FanficsController < ApplicationController
     end
 
     def require_activate
-      return if "active" == User.find(params[:user_id]).activation_state
+      return# if "active" == User.find(params[:user_id]).activation_state
       redirect_back_or_to root_path, alert: 'You have to activate your account'
     end
 
