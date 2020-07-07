@@ -2,8 +2,9 @@ class FanficsController < ApplicationController
   include ApplicationHelper
   before_action :set_fanfic, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
-  before_action :require_asses_to_existing_fanfics, only: [:destroy, :edit, :update]
-  before_action :require_asses_to_new_fanfics, only: [:new, :create]
+  before_action :require_asses_to_fanfic, except: [:index, :show]
+  before_action :require_activate, only: [:new, :create]
+
   # GET /fanfics
   # GET /fanfics.json
   def index
@@ -76,14 +77,15 @@ class FanficsController < ApplicationController
       params.permit(:title, :description, :genre, :user_id)
     end
 
-    def require_asses_to_new_fanfics
-      return if has_access?(params[:user_id].to_i)
+    def require_asses_to_fanfic
+      expected_user_id = @fanfic ? @fanfic.author.id : params[:user_id].to_i
+      return if has_access?(expected_user_id)
       redirect_back_or_to root_path, alert: 'You have no asses to do this'
     end
 
-    def require_asses_to_existing_fanfics
-      return if has_access?(@fanfic.author.id)
-      redirect_back_or_to root_path, alert: 'You have no asses to do this'
+    def require_activate
+      return if "active" == User.find(params[:user_id]).activation_state
+      redirect_back_or_to root_path, alert: 'You have to activate your account'
     end
 
 end

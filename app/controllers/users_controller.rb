@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  skip_before_action :require_login, only: [:new, :create, :activate]
+  skip_before_action :require_login, only: [:new, :create, :activate, :show]
 
   def new
     @user = User.new
@@ -15,6 +15,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(params[:user][:email], params[:user][:password])
+      flash[:warning] = 'Activation message sent to ' + @user.email
       redirect_to root_path
     else
       render 'new'
