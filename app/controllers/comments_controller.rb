@@ -1,6 +1,7 @@
 class CommentsController < ApplicationController
   before_action :require_login, except: [:index]
   before_action :set_fanfic, except: [:destroy]
+  skip_before_action :require_not_blocked, only: [:index]
 
 
   def index

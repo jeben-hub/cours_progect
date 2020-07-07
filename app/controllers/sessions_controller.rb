@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, except: [:destroy]
+  skip_before_action :require_not_blocked
   def new
   end
 

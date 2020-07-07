@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
-  
+
   has_many :fanfics, dependent: :destroy
   has_many :comments, dependent: :destroy
 
@@ -9,11 +9,15 @@ class User < ApplicationRecord
   validates :email, uniqueness: true, email_format: { message: 'has invalid format' }
   validates :name, uniqueness: true
 
-  def self.admin?
+  def admin?
     self.admin
   end
 
-  def self.blocked?
+  def blocked?
     self.blocked
+  end
+
+  def active?
+    self.activation_state == "active"
   end
 end

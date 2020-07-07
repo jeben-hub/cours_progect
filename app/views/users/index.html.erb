@@ -1,0 +1,51 @@
+<table class="footable table table-bordered toggle-arrow-tiny" data-page-size="31" data-filter=#filter>
+<thead>
+  <tr>
+    <th>User ID</th>
+    <th>User Name</th>
+    <th>Email</th>
+    <th>Created at</th>
+    <th>Status</th>
+    <th>Admin</th>
+    <th>Block</th>
+    <th>Delete</th>
+    <th>Make Admin</th>
+  </tr>
+</thead>
+
+<tbody>
+  <% @users.each do |item| %>
+  <tr>
+    <td><%= item.id %></td>
+    <td><%= item.name %></td>
+    <td><%= item.email %></td>
+    <td><%= item.created_at.to_s %></td>
+    <% if item.blocked? %>
+      <td>Blocked</td>
+    <% else %>
+      <td>Active</td>
+    <% end %>
+    <% if item.admin? %>
+      <td>Admin</td>
+    <% else %>
+      <td>User</td>
+    <% end %>
+    <% unless item.admin? %>
+    <% if item.blocked? %>
+      <td><%= link_to 'Unblock user', unblock_user_path(item), data: { confirm: 'Are you sure?' } %></td>
+    <% else %>
+      <td><%= link_to 'Block user', block_user_path(item), data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+    <td><%= link_to 'Delete account', user_path(item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <th><%= link_to 'Make admin', make_admin_user_path(item), data: { confirm: 'Are you sure?' } %></th>
+    <% end %>
+  </tr>
+<% end %>
+</tbody>
+<tfoot>
+<tr>
+    <td colspan="12">
+ <ul class="pagination pull-right"></ul>
+    </td>
+</tr>
+</tfoot>
