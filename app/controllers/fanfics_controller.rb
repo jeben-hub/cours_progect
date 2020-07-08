@@ -74,7 +74,7 @@ class FanficsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fanfic_params
-      params.permit(:title, :description, :genre, :user_id)
+      params.permit(:title, :description, :genre_id, :user_id)
     end
 
     def require_asses_to_fanfics
