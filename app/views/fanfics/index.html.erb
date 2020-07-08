@@ -15,7 +15,7 @@
       <tr>
         <td><%= link_to fanfic.title, fanfic_path(fanfic) %></td>
         <td><%= fanfic.description %></td>
-        <td><%= fanfic.genre %></td>
+        <td><%= fanfic.genre.name %></td>
         <td><%= link_to fanfic.author.name, fanfic.author %></td>
       </tr>
     <% end %>

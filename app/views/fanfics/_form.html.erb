@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :genre %>
-    <%= form.text_field :genre %>
+    <%= form.collection_select :genre_id, Genre.all, :id, :name, include_blank: true %>
   </div>
 
   <div class="actions">

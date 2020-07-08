@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_130458) do
+ActiveRecord::Schema.define(version: 2020_07_08_105201) do
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "body"
@@ -25,11 +25,18 @@ ActiveRecord::Schema.define(version: 2020_07_06_130458) do
   create_table "fanfics", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.string "genre"
     t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "genre_id", default: 3, null: false
+    t.index ["genre_id"], name: "index_fanfics_on_genre_id"
     t.index ["user_id"], name: "index_fanfics_on_user_id"
+  end
+
+  create_table "genres", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -50,5 +57,6 @@ ActiveRecord::Schema.define(version: 2020_07_06_130458) do
 
   add_foreign_key "comments", "fanfics"
   add_foreign_key "comments", "users"
+  add_foreign_key "fanfics", "genres"
   add_foreign_key "fanfics", "users"
 end
