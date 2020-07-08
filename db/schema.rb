@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_105201) do
+ActiveRecord::Schema.define(version: 2020_07_08_171521) do
+
+  create_table "chapters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "body"
+    t.bigint "fanfic_id", null: false
+    t.integer "number"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fanfic_id"], name: "index_chapters_on_fanfic_id"
+  end
 
   create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "body"
@@ -55,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_105201) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "chapters", "fanfics"
   add_foreign_key "comments", "fanfics"
   add_foreign_key "comments", "users"
   add_foreign_key "fanfics", "genres"

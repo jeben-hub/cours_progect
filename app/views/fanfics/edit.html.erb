@@ -1,6 +1,8 @@
 <h1>Editing Fanfic</h1>
+<%= form_for @fanfic, :url => { :action => "update" } do |form| %>
+  <%= render partial: 'form', locals: { form: form } %>
+<% end %>
 
-<%= render 'form', fanfic: @fanfic %>
 
 <%= link_to 'Show', @fanfic %> |
 <%= link_to 'Back', fanfics_path %>

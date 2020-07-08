@@ -3,8 +3,8 @@ class FanficsController < ApplicationController
   before_action :set_fanfic, only: [:show, :edit, :update, :destroy]
   skip_before_action :require_login, only: [:index, :show]
   skip_before_action :require_not_blocked, only: [:index, :show]
+  skip_before_action :require_activate, except: [:create, :new]
   before_action :require_asses_to_fanfics, except: [:index, :show]
-  before_action :require_activate, only: [:new, :create]
   # GET /fanfics
   # GET /fanfics.json
   def index
@@ -14,6 +14,7 @@ class FanficsController < ApplicationController
   # GET /fanfics/1
   # GET /fanfics/1.json
   def show
+    @chapters = @fanfic.chapters.order(created_at: :desc)
   end
 
   # GET /fanfics/new
@@ -30,7 +31,7 @@ class FanficsController < ApplicationController
   # POST /fanfics.json
   def create
     @fanfic = Fanfic.new(fanfic_params)
-
+    @fanfic.user_id = params[:user_id]
     respond_to do |format|
       if @fanfic.save
         format.html { redirect_to @fanfic, notice: 'Fanfic was successfully created.' }
@@ -74,18 +75,13 @@ class FanficsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fanfic_params
-      params.permit(:title, :description, :genre_id, :user_id)
+      params.require(:fanfic).permit(:title, :description, :genre_id)
     end
 
     def require_asses_to_fanfics
       expected_user_id = @fanfic ? @fanfic.author.id : params[:user_id].to_i
       return if has_access?(expected_user_id)
       redirect_back_or_to root_path, alert: 'You have no asses to do this'
-    end
-
-    def require_activate
-      return if User.find(params[:user_id]).active?
-      redirect_back_or_to root_path, alert: 'You have to activate your account'
     end
 
 end
