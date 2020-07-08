@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include ApplicationHelper
   skip_before_action :require_login, only: [:new, :create, :activate, :show]
-  skip_before_action :require_not_blocked, only: [:show, :destroy]
+  skip_before_action :require_not_blocked, only: [:new, :create, :show, :destroy]
   before_action :set_user, only: [:make_admin, :block, :unblock, :show, :destroy]
   before_action :require_admin, only: [:make_admin, :block, :unblock, :index]
   before_action :admin_protect, only: [:make_admin, :block, :unblock, :destroy]
