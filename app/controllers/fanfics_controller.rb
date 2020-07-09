@@ -14,7 +14,7 @@ class FanficsController < ApplicationController
   # GET /fanfics/1
   # GET /fanfics/1.json
   def show
-    @chapters = @fanfic.chapters.order(created_at: :desc)
+    @chapters = @fanfic.chapters.order(:number)
   end
 
   # GET /fanfics/new

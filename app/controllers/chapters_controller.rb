@@ -6,11 +6,10 @@ class ChaptersController < ApplicationController
   before_action :require_asses_to_chapters, except: [:index, :show]
   before_action :set_fanfic
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
-  #before_action :set_picture, only: [:create, :update]
 
-  def index
-    @chapters = @fanfic.chapters.order(created_at: :desc)
-  end
+  #def index
+  #  @chapters = @fanfic.chapters.order(created_at: :desc)
+  #end
   # GET /chapters/1
   # GET /chapters/1.json
   def show
@@ -30,6 +29,7 @@ class ChaptersController < ApplicationController
   def create
     @chapter = Chapter.new(chapter_params_to_save)
     @chapter.fanfic_id = params[:fanfic_id]
+    @chapter.number = @fanfic.chapters.count + 1
     respond_to do |format|
       if @chapter.save
         format.html { redirect_to fanfic_chapter_path(@fanfic, @chapter), notice: 'Chapter was successfully created.' }
@@ -58,6 +58,7 @@ class ChaptersController < ApplicationController
   # DELETE /chapters/1
   # DELETE /chapters/1.json
   def destroy
+    delete_exist_picture
     @chapter.destroy
     redirect_to @fanfic
   end
@@ -80,8 +81,16 @@ class ChaptersController < ApplicationController
     end
 
     def upload_picture_chapter_params
+      delete_exist_picture
       upload_rezult = Cloudinary::Uploader.upload(@image)
       chapter_params.merge(picture: upload_rezult['secure_url'])
+    end
+
+    def delete_exist_picture
+      if @chapter
+        picture_id = @chapter.picture.split('/').last.split('.').first
+        Cloudinary::Uploader.destroy(picture_id)
+      end
     end
 
     # Use callbacks to share common setup or constraints between actions.
@@ -100,6 +109,6 @@ class ChaptersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chapter_params
-      params.require(:chapter).permit(:name, :body, :number, :picture)
+      params.require(:chapter).permit(:name, :body, :picture)
     end
 end

@@ -34,7 +34,7 @@
     <% @chapters.each do |chapter| %>
       <tr>
         <td><%= chapter.name %></td>
-        <td><%= chapter.body %></td>
+        <td><%= markdown(chapter.body) %></td>
         <td><%= chapter.fanfic_id %></td>
         <td><%= chapter.number %></td>
         <td><%= link_to 'Show', fanfic_chapter_path(@fanfic, chapter) %></td>

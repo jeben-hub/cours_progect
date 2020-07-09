@@ -5,7 +5,7 @@
 
 <p>
   <strong>Body:</strong>
-  <%= @chapter.body %>
+  <%= markdown(@chapter.body) %>
 </p>
 
 <p>
@@ -21,4 +21,4 @@
 <img class="post-image" src="<%= @chapter.picture %>">
 
 
-<%= link_to 'Back', fanfic_path(@chapter.fanfic_id) %>
+<%= link_to 'Back to fanfic', fanfic_path(@chapter.fanfic_id) %>

@@ -31,6 +31,8 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'sorcery'
 gem 'validates_email_format_of'
 gem 'cloudinary'
+gem 'redcarpet'
+
 
 
 
