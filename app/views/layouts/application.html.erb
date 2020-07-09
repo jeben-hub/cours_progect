@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= favicon_link_tag asset_path('logo_oko.png') %>
   </head>
 
   <body>
@@ -17,6 +18,7 @@
           <span><%= link_to current_user.name, current_user %></span>
         </nav>
         <%= link_to 'Log Out', log_out_url, :class => 'btn btn-btn btn-primary btn-xs', method: :delete %>
+        <%= link_to 'All users', users_path, :class => 'btn btn-btn btn-primary btn-xs' if current_user_admin? %>
       <% else %>
         <%= link_to 'Log In', log_in_url, :class => 'btn btn-btn btn-primary btn-xs' %>
         <%= link_to 'Sign up', sign_up_url, :class => 'btn btn-btn btn-primary btn-xs' %>
@@ -25,7 +27,7 @@
     <% flash.each do |name, msg| -%>
       <%= content_tag :div, msg, class: name %>
     <% end -%>
-    
+
 
     <%= yield %>
   </body>

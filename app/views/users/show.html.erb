@@ -1,5 +1,4 @@
 <h1><%= "ADMIN" if @user.admin? %></h1>
-<h1><%= link_to 'All users', users_path if @user.admin? %></h1>
 <h1><%= "Blocked" if @user.blocked? %></h1>
 <h3><%= @user.name %></h3>
 <table>
@@ -31,7 +30,7 @@
   <%= link_to 'New Fanfic', new_user_fanfic_path(@user) %>
   <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
 <% end %>
-<% if current_user.admin? && !@user.admin? %>
+<% if current_user_admin? && !@user.admin? %>
   <%= link_to 'Make admin', make_admin_user_path(@user), data: { confirm: 'Are you sure?' } %>
   <% if @user.blocked? %>
     <%= link_to 'Unblock user', unblock_user_path(@user), data: { confirm: 'Are you sure?' } %>
