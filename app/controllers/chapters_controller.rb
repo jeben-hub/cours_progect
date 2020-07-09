@@ -6,6 +6,7 @@ class ChaptersController < ApplicationController
   before_action :require_asses_to_chapters, except: [:index, :show]
   before_action :set_fanfic
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
+  #before_action :set_picture, only: [:create, :update]
 
   def index
     @chapters = @fanfic.chapters.order(created_at: :desc)
@@ -27,8 +28,8 @@ class ChaptersController < ApplicationController
   # POST /chapters
   # POST /chapters.json
   def create
-    @chapter = Chapter.new(chapter_params)
-
+    @chapter = Chapter.new(chapter_params_to_save)
+    @chapter.fanfic_id = params[:fanfic_id]
     respond_to do |format|
       if @chapter.save
         format.html { redirect_to fanfic_chapter_path(@fanfic, @chapter), notice: 'Chapter was successfully created.' }
@@ -44,8 +45,8 @@ class ChaptersController < ApplicationController
   # PATCH/PUT /chapters/1.json
   def update
     respond_to do |format|
-      if @chapter.update(chapter_params)
-        format.html { redirect_to @chapter, notice: 'Chapter was successfully updated.' }
+      if @chapter.update(chapter_params_to_save)
+        format.html { redirect_to fanfic_chapter_path(@fanfic, @chapter), notice: 'Chapter was successfully updated.' }
         format.json { render :show, status: :ok, location: @chapter }
       else
         format.html { render :edit }
@@ -62,6 +63,27 @@ class ChaptersController < ApplicationController
   end
 
   private
+
+    def chapter_params_to_save
+      @image = params[:chapter][:picture]
+      if @image.nil?
+        return default_chapter_params
+      else
+        return upload_picture_chapter_params
+      end
+    end
+
+    def default_chapter_params
+      return chapter_params if params[:commit] == "Update Chapter"
+      @image = "app/assets/images/default_pic.jpg"
+      upload_picture_chapter_params
+    end
+
+    def upload_picture_chapter_params
+      upload_rezult = Cloudinary::Uploader.upload(@image)
+      chapter_params.merge(picture: upload_rezult['secure_url'])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def require_asses_to_chapters
       return if has_access?(Fanfic.find(params[:fanfic_id]).user_id)
@@ -78,6 +100,6 @@ class ChaptersController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def chapter_params
-      params.permit(:name, :body, :number, :fanfic_id)
+      params.require(:chapter).permit(:name, :body, :number, :picture)
     end
 end

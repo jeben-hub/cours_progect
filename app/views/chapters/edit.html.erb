@@ -1,6 +1,8 @@
 <h1>Editing Chapter</h1>
 
-<%= render 'form', chapter: @chapter %>
 
-<%= link_to 'Show', @chapter %> |
-<%= link_to 'Back', chapters_path %>
+<%= form_for @chapter, url: {action: "update"} do |form| %>
+  <%= render partial: 'form', locals: { form: form } %>
+<% end %>
+
+<%= link_to 'Back', fanfic_path(@fanfic) %>
