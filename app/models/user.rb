@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  searchkick  
   has_many :fanfics, dependent: :destroy
   has_many :comments, dependent: :destroy
 
