@@ -32,7 +32,9 @@ gem 'sorcery'
 gem 'validates_email_format_of'
 gem 'cloudinary'
 gem 'redcarpet'
-
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
+gem 'searchkick'
 
 
 

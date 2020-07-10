@@ -68,16 +68,10 @@ class ChaptersController < ApplicationController
     def chapter_params_to_save
       @image = params[:chapter][:picture]
       if @image.nil?
-        return default_chapter_params
+        return chapter_params
       else
         return upload_picture_chapter_params
       end
-    end
-
-    def default_chapter_params
-      return chapter_params if params[:commit] == "Update Chapter"
-      @image = "app/assets/images/default_pic.jpg"
-      upload_picture_chapter_params
     end
 
     def upload_picture_chapter_params

@@ -18,7 +18,7 @@
   <%= @chapter.number %>
 </p>
 
-<img class="post-image" src="<%= @chapter.picture %>">
+<img class="post-image" src="<%= picture(@chapter) %>">
 
 
 <%= link_to 'Back to fanfic', fanfic_path(@chapter.fanfic_id) %>
