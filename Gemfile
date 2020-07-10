@@ -35,6 +35,7 @@ gem 'redcarpet'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'searchkick'
+gem 'bonsai-elasticsearch-rails'
 
 
 
