@@ -13,7 +13,9 @@
 
   <div class="field">
     <%= form.label :picture %>
-    <%= form.file_field :picture, class: 'form-control'  %>
+    <div class="fallback">
+      <%= form.file_field :picture, class: 'dropzone'  %>
+    </div>
   </div>
 
   <div class="field">
