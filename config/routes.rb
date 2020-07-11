@@ -8,7 +8,9 @@ Rails.application.routes.draw do
       get :activate, :make_admin, :block, :unblock
     end
     resources :fanfics, except: [:index], shallow: true do
-      resources :chapters, shallow: false
+      resources :chapters, shallow: false do
+        resources :likes, only: [:create, :destroy]
+      end
       resources :comments, only: [:create, :index, :destroy]
     end
   end

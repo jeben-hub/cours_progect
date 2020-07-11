@@ -1,9 +1,11 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
-  searchkick  
+  searchkick
   has_many :fanfics, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+
 
   validates :password, length: { minimum: 6 }
   validates :password, confirmation: true

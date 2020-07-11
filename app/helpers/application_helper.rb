@@ -8,4 +8,5 @@ module ApplicationHelper
     return false unless current_user
     return current_user.admin?
   end
+
 end

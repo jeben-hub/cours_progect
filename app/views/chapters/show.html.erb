@@ -18,6 +18,8 @@
   <%= @chapter.number %>
 </p>
 
+<%= render partial: 'likes/buttons', locals: { chapter: @chapter } %>
+
 <img class="post-image" src="<%= picture(@chapter) %>">
 
 
