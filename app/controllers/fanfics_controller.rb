@@ -8,7 +8,11 @@ class FanficsController < ApplicationController
   # GET /fanfics
   # GET /fanfics.json
   def index
-    @fanfics = Fanfic.all
+    if @tag_name = params[:tag]
+      @fanfics = Tag.find_by_name(@tag_name).fanfics
+    else
+      @fanfics = Fanfic.all
+    end
   end
 
   # GET /fanfics/1
@@ -75,7 +79,7 @@ class FanficsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fanfic_params
-      params.require(:fanfic).permit(:title, :description, :genre_id)
+      params.require(:fanfic).permit(:title, :description, :genre_id, :all_tags)
     end
 
     def require_asses_to_fanfics

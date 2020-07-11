@@ -17,6 +17,14 @@
   <strong>User:</strong>
   <%= @fanfic.user_id %>
 </p>
+
+<p>
+  Tags:
+  <% @fanfic.tags.each do |tag| %>
+    <%= link_to tag.name, root_path %>
+  <% end %>
+</p>
+
 <h1>Chapters</h1>
 
 <table>

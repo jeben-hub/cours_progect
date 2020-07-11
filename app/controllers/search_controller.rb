@@ -1,14 +1,30 @@
 class SearchController < ApplicationController
+  skip_before_action :require_login, only: [:search]
+  skip_before_action :require_not_blocked, only: [:search]
+  skip_before_action :require_activate, except: [:search]
+  before_action :set_term
+  before_action :force_json, only: [:tag_search]
+
   def search
-    if params[:term].nil?
+    if @term.nil?
       @articles = []
     else
-      @term = params[:term]
       @fanfics = search_all
     end
   end
 
+  def tag_search
+    @tags = Tag.where("name LIKE ?", "%#{@term}%").limit(5).map(&:name)
+  end
+
   private
+  def force_json
+   request.format = :json
+  end
+
+  def set_term
+    @term = params[:term]
+  end
 
   def search_all
     fanfic_search + comment_search + chapter_search + genre_search + user_search
@@ -20,26 +36,27 @@ class SearchController < ApplicationController
   end
 
   def comment_search
-    search_rezult =  Comment.search @term
-    search_rezult.map {|comment| comment.fanfic}
+    comments =  Comment.search @term
+    comments.map(&:fanfic)
   end
 
   def chapter_search
-    search_rezult =  Chapter.search @term
-    search_rezult.map {|chapter| chapter.fanfic}
+    chapters =  Chapter.search @term
+    chapters.map(&:fanfic)
   end
 
   def genre_search
-    search_rezult =  Genre.search @term
+    genres =  Genre.search @term
     temp = []
-    search_rezult.each {|genre| temp += genre.fanfics}
+    genres.each {|genre| temp += genre.fanfics}
     temp
   end
 
   def user_search
-    search_rezult =  User.search @term, fields: [:name]
+    users =  User.search @term, fields: [:name]
     temp = []
-    search_rezult.each {|user| temp += user.fanfics}
+    users.each {|user| temp += user.fanfics}
     temp
   end
+
 end

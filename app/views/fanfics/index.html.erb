@@ -1,25 +1,11 @@
-<h1>Fanfics</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Genre</th>
-      <th>User</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fanfics.each do |fanfic| %>
-      <tr>
-        <td><%= link_to fanfic.title, fanfic_path(fanfic) %></td>
-        <td><%= fanfic.description %></td>
-        <td><%= fanfic.genre.name %></td>
-        <td><%= link_to fanfic.author.name, fanfic.author %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+<h1>tag: <%= @tag_name %></h1>
+<% @fanfics.each do |fanfic| %>
+  <div class = 'col-md-8 offset-2'>
+    <h1><%= link_to fanfic.title, fanfic_path(fanfic) %></h1>
+    <h3>Author: <%= link_to fanfic.author.name, fanfic.author %></h3>
+    <p><%= fanfic.description %></p>
+    <p><br><%= fanfic.genre.name %></br></p>
+    <p><small>Tags: <%= raw fanfic.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small</p>
+  </div>
+  <br>
+<% end %>

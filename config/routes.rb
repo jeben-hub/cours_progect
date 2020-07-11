@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   get '/fanfics', to: 'fanfics#index'
   get "search", to: "search#search"
+  get "tag_search", to: "search#tag_search"
+  get 'tags/:tag', to: 'fanfics#index', as: :tag
   root 'fanfics#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:new, :create, :show, :index, :destroy] do

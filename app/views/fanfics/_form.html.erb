@@ -1,18 +1,23 @@
-  <div class="field">
+  <div class="input">
     <%= form.label :title %>
-    <%= form.text_field :title %>
+    <%= form.text_field :title, placeholder: "Title" %>
   </div>
 
-  <div class="field">
+  <div class="input">
     <%= form.label :description %>
-    <%= form.text_area :description %>
+    <%= form.text_area :description, placeholder: "Description", rows: 5  %>
   </div>
 
-  <div class="field">
+  <div class="input">
     <%= form.label :genre %>
     <%= form.collection_select :genre_id, Genre.all, :id, :name, include_blank: true %>
   </div>
 
-  <div class="actions">
+  <div class="input">
+    <%= form.label :all_tags %><br />
+    <%= form.text_field :all_tags, id: "tags_field" %>
+  </div>
+
+  <div class="action">
     <%= form.submit %>
   </div>

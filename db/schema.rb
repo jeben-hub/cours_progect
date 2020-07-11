@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_091758) do
+ActiveRecord::Schema.define(version: 2020_07_11_133239) do
 
   create_table "chapters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -59,6 +59,21 @@ ActiveRecord::Schema.define(version: 2020_07_11_091758) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "taggings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "fanfic_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fanfic_id"], name: "index_taggings_on_fanfic_id"
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "email", null: false
     t.string "crypted_password"
@@ -82,4 +97,6 @@ ActiveRecord::Schema.define(version: 2020_07_11_091758) do
   add_foreign_key "fanfics", "users"
   add_foreign_key "likes", "chapters"
   add_foreign_key "likes", "users"
+  add_foreign_key "taggings", "fanfics"
+  add_foreign_key "taggings", "tags"
 end
