@@ -14,7 +14,10 @@ class SearchController < ApplicationController
   end
 
   def tag_search
-    @tags = Tag.where("name LIKE ?", "%#{@term}%").limit(5).map(&:name)
+    tags_array = @term.split(", ")
+    tags = Tag.where("name LIKE ?", "%#{tags_array.last}%").limit(5).map(&:name)
+    tags_array.pop
+    @tags = tags_array.empty? ? tags : tags.map { |teg| tags_array.join(", ") + ", " + teg }
   end
 
   private

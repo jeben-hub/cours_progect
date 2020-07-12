@@ -5,7 +5,7 @@ document.addEventListener("turbolinks:load", function() {
 
   var options = {
     url: function(phrase) {
-      return "/tag_search.json?term=" + phrase.split(", ").slice(-1)[0];
+      return "/tag_search.json?term=" + phrase;
     },
     getValue: "name",
   };
