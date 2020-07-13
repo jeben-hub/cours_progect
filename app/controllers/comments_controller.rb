@@ -5,16 +5,12 @@ class CommentsController < ApplicationController
   before_action :set_fanfic, except: [:destroy]
 
 
-  def index
-    @comments = @fanfic.comments.order(created_at: :desc)
-  end
-
   def create
     @comment = @fanfic.comments.new(comment_params)
     @comment.user = current_user
     @comment.save
+    ActionCable.server.broadcast "fanfic_#{@fanfic.id}", comments_data
     redirect_to @fanfic
-    #render json: { errors: @comment.errors }, status: :unprocessable_entity unless @comment.save
   end
 
   def destroy
@@ -29,6 +25,12 @@ class CommentsController < ApplicationController
 
 
   private
+
+  def comments_data
+    { content: @comment.body,
+      user_name: current_user.name,
+      datetime: @comment.created_at.strftime("%m/%d/%Y at %I:%M%p")}
+   end
 
   def set_fanfic
     @fanfic = Fanfic.find(params[:fanfic_id])

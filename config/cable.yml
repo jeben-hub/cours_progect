@@ -6,5 +6,4 @@ test:
 
 production:
   adapter: redis
-  url: <%= ENV.fetch("REDIS_URL") { "redis://localhost:6379/1" } %>
-  channel_prefix: MordorBlog_production
+  url: redis://redistogo:93c93f93b0cc55381d74f4daa63a98d5@porgy.redistogo.com:11485/
