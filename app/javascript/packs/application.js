@@ -13,7 +13,9 @@ require("jquery")
 require("easy-autocomplete")
 import "packs/tags"
 //= require dropzone
-
+require("jquery")
+require("jquery-jeditable")
+require("@nathanvda/on_the_spot")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference

@@ -37,8 +37,7 @@ gem 'elasticsearch-rails'
 gem 'searchkick'
 gem 'dropzonejs-rails'
 gem 'redis', '~> 3.0'
-
-
+gem "on_the_spot"
 
 
 group :development, :test do

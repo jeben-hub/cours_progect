@@ -17,7 +17,7 @@ if (url[url.length - 2] == "fanfics" &&
     },
 
     received(data) {
-      $('#msg').append('<div class="message"> ' +
+      $('#msg').prepend('<div class="message"> ' +
       '<h3>' + data.user_name + '</h3>' +
       '<small>' + data.datetime  + '</small>' +
       '<p>' + data.content + '</p>' +

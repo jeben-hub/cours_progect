@@ -1,11 +1,14 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  skip_before_action :require_login, only: [:new, :create, :activate, :show]
-  skip_before_action :require_not_blocked, only: [:new, :create, :show, :destroy]
-  skip_before_action :require_activate, only: [:new, :create, :show, :destroy]
+  skip_before_action :require_login, only: [:new, :create, :activate, :show, :update_attribute_on_the_spot]
+  skip_before_action :require_not_blocked, only: [:new, :create, :show, :destroy, :update_attribute_on_the_spot]
+  skip_before_action :require_activate, only: [:activate, :new, :create, :show, :destroy, :update_attribute_on_the_spot]
   before_action :set_user, only: [:make_admin, :block, :unblock, :show, :destroy]
   before_action :require_admin, only: [:make_admin, :block, :unblock, :index]
   before_action :admin_protect, only: [:make_admin, :block, :unblock, :destroy]
+  before_action :save_email, only: [:update_attribute_on_the_spot]
+
+  can_edit_on_the_spot is_allowed: :check_access_to_edit, on_success: :new_email
 
   def index
     @users = User.all
@@ -64,7 +67,33 @@ class UsersController < ApplicationController
     redirect_to root_path
   end
 
+  protected
+
+  def check_access_to_edit(object, field)
+    return has_access?(object.id.to_i) && current_user.active? && !(current_user.blocked?)
+  end
+
+  def new_email(updated_object, field, value)
+    if field == "email" && email_is_new?(value)
+      new_email_confirm(updated_object)
+    end
+  end
+
   private
+
+  def email_is_new?(new_email)
+    @old_email != new_email
+  end
+
+  def save_email
+    @old_email = User.find(params[:id].split("__").last).email
+  end
+
+  def new_email_confirm(user)
+    user.deactivate
+    UserMailer.activation_needed_email(user).deliver_later
+    flash[:warning] = 'Activation message sent to ' + user.email
+  end
 
   def admin_protect
     return unless @user.admin?
