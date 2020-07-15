@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_11_133239) do
+ActiveRecord::Schema.define(version: 2020_07_15_131123) do
 
   create_table "chapters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -59,6 +59,16 @@ ActiveRecord::Schema.define(version: 2020_07_11_133239) do
     t.index ["user_id"], name: "index_likes_on_user_id"
   end
 
+  create_table "ratings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "fanfic_id", null: false
+    t.bigint "user_id", null: false
+    t.integer "rate"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["fanfic_id"], name: "index_ratings_on_fanfic_id"
+    t.index ["user_id"], name: "index_ratings_on_user_id"
+  end
+
   create_table "taggings", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "fanfic_id", null: false
     t.bigint "tag_id", null: false
@@ -97,6 +107,8 @@ ActiveRecord::Schema.define(version: 2020_07_11_133239) do
   add_foreign_key "fanfics", "users"
   add_foreign_key "likes", "chapters"
   add_foreign_key "likes", "users"
+  add_foreign_key "ratings", "fanfics"
+  add_foreign_key "ratings", "users"
   add_foreign_key "taggings", "fanfics"
   add_foreign_key "taggings", "tags"
 end

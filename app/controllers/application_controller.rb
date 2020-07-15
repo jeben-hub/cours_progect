@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
 
   def require_activate
     return if current_user.active?
-    redirect_back_or_to root_path, alert: 'You have to activate your account'
+    redirect_to user_path(current_user), alert: 'You have to activate your account'
   end
 
 end

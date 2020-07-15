@@ -5,6 +5,7 @@ class Fanfic < ApplicationRecord
   has_many :chapters, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :rating, class_name: "Rating", dependent: :destroy
 
   searchkick
 

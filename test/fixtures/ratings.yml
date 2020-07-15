@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  fanfic: one
+  user: one
+  rate: 1
+
+two:
+  fanfic: two
+  user: two
+  rate: 1

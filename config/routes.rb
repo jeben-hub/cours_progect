@@ -24,4 +24,5 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
+  post '/new_rating', to: 'rating#create'
 end

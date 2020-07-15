@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :fanfics, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :rating, class_name: "Rating", dependent: :destroy
 
 
   validates :password, length: { minimum: 6 }, if: -> {new_record? || changes[:crypted_password]}

@@ -3,7 +3,6 @@
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
 
-import 'bootstrap'
 require("@rails/ujs").start()
 require("turbolinks").start()
 require("@rails/activestorage").start()
@@ -11,11 +10,13 @@ require("channels")
 
 require("jquery")
 require("easy-autocomplete")
-import "packs/tags"
-//= require dropzone
-require("jquery")
 require("jquery-jeditable")
 require("@nathanvda/on_the_spot")
+import 'bootstrap'
+import "packs/tags"
+import "packs/rater"
+import "packs/rating"
+//= require dropzone
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
