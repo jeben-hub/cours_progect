@@ -1,7 +1,7 @@
-<p>
+<h1>
   <strong>Title:</strong>
   <%= @fanfic.title %>
-</p>
+</h1>
 
 <p>
   <strong>Description:</strong>
@@ -14,8 +14,8 @@
 </p>
 
 <p>
-  <strong>User:</strong>
-  <%= @fanfic.user_id %>
+  <strong>Author:</strong>
+  <%= link_to @fanfic.user.name, user_path(@fanfic.user) %>
 </p>
 
 <p>
@@ -24,37 +24,7 @@
     <%= link_to tag.name, root_path %>
   <% end %>
 </p>
-
-<h1>Chapters</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Body</th>
-      <th>Fanfic</th>
-      <th>Number</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @chapters.each do |chapter| %>
-      <tr>
-        <td><%= chapter.name %></td>
-        <td><%= markdown(chapter.body) %></td>
-        <td><%= chapter.fanfic_id %></td>
-        <td><%= chapter.number %></td>
-        <td><%= link_to 'Show', fanfic_chapter_path(@fanfic, chapter) %></td>
-        <td><%= link_to 'Edit', edit_fanfic_chapter_path(@fanfic, chapter) %></td>
-        <td><%= link_to 'Destroy', fanfic_chapter_path(@fanfic, chapter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
+<%= render partial: 'chapters/chapters_nav', locals: { fanfic: @fanfic } %>
 <%= link_to 'New Chapter', new_fanfic_chapter_path(@fanfic) %>
 <%= render partial: 'rating/show', locals: { fanfic: @fanfic, readonly: nil } %>
 <%= link_to 'Back', root_path %>

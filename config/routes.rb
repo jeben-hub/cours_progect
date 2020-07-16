@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get '/fanfics', to: 'fanfics#index'
-  get "search", to: "search#search"
-  get "tag_search", to: "search#tag_search"
-  get 'tags/:tag', to: 'fanfics#index', as: :tag
+  get '/fanfics', to: 'fanfics#index', as: :fanfics
   root 'fanfics#index'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :users, only: [:new, :create, :show, :index, :destroy] do
@@ -14,7 +11,7 @@ Rails.application.routes.draw do
       get :activate, :make_admin, :block, :unblock
     end
     resources :fanfics, except: [:index], shallow: true do
-      resources :chapters, shallow: false do
+      resources :chapters, except: [:index], shallow: false do
         resources :likes, only: [:create, :destroy]
       end
       resources :comments, only: [:create, :index, :destroy]
@@ -25,4 +22,7 @@ Rails.application.routes.draw do
   get '/log_in', to: 'sessions#new', as: :log_in
   delete '/log_out', to: 'sessions#destroy', as: :log_out
   post '/new_rating', to: 'rating#create'
+  get "search", to: "search#search"
+  get "tag_search", to: "search#tag_search"
+  get 'tags/:tag', to: 'fanfics#index', as: :tag
 end

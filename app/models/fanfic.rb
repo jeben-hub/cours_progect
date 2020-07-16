@@ -2,7 +2,7 @@ class Fanfic < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   has_many :comments, dependent: :destroy
-  has_many :chapters, dependent: :destroy
+  has_many :chapters, -> { order(:number) }, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
   has_many :rating, class_name: "Rating", dependent: :destroy

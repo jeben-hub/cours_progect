@@ -5,22 +5,28 @@
 
 <p>
   <strong>Body:</strong>
+  <img src="<%= picture(@chapter)%>" class="m-5 rounded float-left">
   <%= markdown(@chapter.body) %>
 </p>
 
-<p>
-  <strong>Fanfic:</strong>
-  <%= @chapter.fanfic_id %>
-</p>
-
-<p>
-  <strong>Number:</strong>
-  <%= @chapter.number %>
-</p>
-
 <%= render partial: 'likes/buttons', locals: { chapter: @chapter } %>
-
-<img class="post-image" src="<%= picture(@chapter) %>">
-
-
-<%= link_to 'Back to fanfic', fanfic_path(@chapter.fanfic_id) %>
+<ul class="list-group list-group-flush">
+  <li class="list-group-item">
+    <ul class="nav nav-pills nav-fill">
+      <li class="nav-item">
+        <%= link_to_previos(@chapter) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to_next(@chapter) %>
+      </li>
+    </ul>
+  </li>
+  <li class="list-group-item">
+    <ul class="nav justify-content-center">
+      <% chapter_pages(@chapter).each do |page_number| %>
+        <li class="nav-item"><%= page_number %></li>
+      <% end %>
+    </ul>
+  </li>
+</ul>
+<%= link_to 'Back', fanfic_path(@chapter.fanfic) %>
