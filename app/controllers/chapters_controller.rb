@@ -3,11 +3,17 @@ class ChaptersController < ApplicationController
   skip_before_action :require_login, only: [:index, :show]
   skip_before_action :require_not_blocked, only: [:index, :show]
   skip_before_action :require_activate, only: [:index, :show]
-  before_action :require_asses_to_chapters, except: [:index, :show]
-  before_action :set_fanfic
+  before_action :require_asses_to_chapters, except: [:index, :show, :sort]
+  before_action :set_fanfic, except: [:sort]
   before_action :set_chapter, only: [:show, :edit, :update, :destroy]
 
   def show
+  end
+
+  def sort
+    params[:chapters_ids].split(",").each_with_index  do |chapter_id, index|
+        Chapter.find(chapter_id).update_attribute("number", index + 1)
+    end
   end
 
   def new

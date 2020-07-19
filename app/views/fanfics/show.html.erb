@@ -24,7 +24,9 @@
     <%= link_to tag.name, root_path %>
   <% end %>
 </p>
-<%= render partial: 'chapters/chapters_nav', locals: { fanfic: @fanfic } %>
+
+<%= render partial: 'chapters/table_of_chapters', locals: { fanfic: @fanfic } %>
+
 <%= link_to 'New Chapter', new_fanfic_chapter_path(@fanfic) %>
 <%= render partial: 'rating/show', locals: { fanfic: @fanfic, readonly: nil } %>
 <%= link_to 'Back', root_path %>

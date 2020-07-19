@@ -25,4 +25,5 @@ Rails.application.routes.draw do
   get "search", to: "search#search"
   get "tag_search", to: "search#tag_search"
   get 'tags/:tag', to: 'fanfics#index', as: :tag
+  post '/chapters_sort', to: 'chapters#sort'
 end

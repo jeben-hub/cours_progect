@@ -16,8 +16,22 @@ import 'bootstrap'
 import "packs/tags"
 import "packs/rater"
 import "packs/rating"
-//= require dropzone
+import Sortable from 'sortablejs';
 
+//= require dropzone
+document.addEventListener("turbolinks:load", function() {
+  var el = document.getElementById('chapters-edit');
+  var sortable = Sortable.create(el);
+  $('#save-chapters-table').on('click', function() {
+    var ids = $(el).children().map(function() {
+      return $(this).attr("chapter-id");
+    });
+    $.ajax({
+      type: "POST",
+      url: "/chapters_sort?chapters_ids=" + Array.from(ids).join()
+    });
+  });
+});
 
 // Uncomment to copy all static images under ../images to the output folder and reference
 // them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)

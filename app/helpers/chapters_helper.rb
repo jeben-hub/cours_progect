@@ -28,4 +28,8 @@ module ChaptersHelper
     end
   end
 
+  def has_edit_asses?(fanfic)
+    has_access?(fanfic.user_id) && fanfic.chapters.count > 1
+  end
+
 end
