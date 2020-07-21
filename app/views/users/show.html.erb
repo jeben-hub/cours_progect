@@ -1,13 +1,13 @@
 <h1><%= "ADMIN" if @user.admin? %></h1>
 <h1><%= "Blocked" if @user.blocked? %></h1>
-<h3>Username: <%= on_the_spot_edit @user, :name %></h3>
-<h3>Email: <%= on_the_spot_edit @user, :email %></h3>
+<h3><%= on_the_spot_edit @user, :name %></h3>
+<h3><%= on_the_spot_edit @user, :email %></h3>
 <table>
   <thead>
     <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Genre</th>
+      <th><%= t("fanfic.title") %></th>
+      <th><%= t("fanfic.description") %></th>
+      <th><%= t("fanfic.genre") %></th>
     </tr>
   </thead>
 
@@ -18,8 +18,8 @@
         <td><%= fanfic.description %></td>
         <td><%= fanfic.genre.name %></td>
         <% if has_access?(@user.id) %>
-          <td><%= link_to 'Edit', edit_fanfic_path(fanfic) %></td>
-          <td><%= link_to 'Destroy', fanfic_path(fanfic), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to t("global.edit"), edit_fanfic_path(fanfic) %></td>
+          <td><%= link_to t("global.destroy"), fanfic_path(fanfic), method: :delete, data: { confirm: t("global.confirm") }%></td>
         <% end %>
       </tr>
     <% end %>
@@ -29,13 +29,13 @@
 
 <% if has_access?(@user.id) %>
   <%= link_to 'New Fanfic', new_user_fanfic_path(@user) %>
-  <%= link_to 'Delete account', user_path(@user), method: :delete, data: { confirm: 'Are you sure?' } %>
+  <%= link_to t("users.menegment.delete"), user_path(@user), method: :delete, data: { confirm: t("global.confirm") } %>
 <% end %>
 <% if current_user_admin? && !@user.admin? %>
-  <%= link_to 'Make admin', make_admin_user_path(@user), data: { confirm: 'Are you sure?' } %>
+  <%= link_to t("users.menegment.make_admin"), make_admin_user_path(@user), data: { confirm: t("global.confirm") } %>
   <% if @user.blocked? %>
-    <%= link_to 'Unblock user', unblock_user_path(@user), data: { confirm: 'Are you sure?' } %>
+    <%= link_to t("users.menegment.unblock"), unblock_user_path(@user), data: { confirm: t("global.confirm") } %>
   <% else %>
-    <%= link_to 'Block user', block_user_path(@user), data: { confirm: 'Are you sure?' } %>
+    <%= link_to t("users.menegment.block"), block_user_path(@user), data: { confirm: t("global.confirm") } %>
   <% end %>
 <% end %>

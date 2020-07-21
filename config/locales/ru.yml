@@ -1,0 +1,41 @@
+ru:
+  activerecord:
+    attributes:
+      user:
+        email: Электронная почта
+        password: Пароль
+        password_confirmation: Подтвердите пароль
+        name: Имя
+  users:
+    menegment:
+      user: Пользователь
+      created_at: Дата регистрации
+      admin: Администратор
+      status: Статус блокировки
+      make_admin: Сделать админом
+      blocked: Заблокирован
+      delete: Удалить аккаунт
+      active: Активен
+      block: Заблокировать
+      unblock: Разблокировать
+    btn:
+      log_out: Выйти
+      log_in: Войти
+      sign_up: Регистрация
+      all_users: Управление пользователями
+  fanfic:
+    title: Название
+    description: Описание
+    genre: Жанр
+    user: Автор
+    tegs: Теги
+  global:
+    confirm: Вы уверены?
+    edit: Редактировать
+    destroy: Удалить
+    back: Назад
+    forms:
+      search: Найти
+      create: Создать
+      submit: Отправить
+  mordor: "Мордор"

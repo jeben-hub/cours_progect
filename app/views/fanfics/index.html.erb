@@ -1,12 +1,15 @@
 <h1><%="tag: " + @tag_name  if @tag_name %> </h1>
 <% @fanfics.each do |fanfic| %>
-  <div class = 'col-md-8 offset-2'>
-    <h1><%= link_to fanfic.title, fanfic_path(fanfic) %></h1>
-    <h3>Author: <%= link_to fanfic.author.name, fanfic.author %></h3>
-    <%= render partial: 'rating/show', locals: { fanfic: fanfic, readonly: "read-only='true'" } %>
-    <p><%= fanfic.description %></p>
-    <p><br><%= fanfic.genre.name %></br></p>
-    <p><small>Tags: <%= raw fanfic.tags.map(&:name).map { |t| link_to t, tag_path(t) }.join(', ') %></small</p>
+  <div class="items-center">
+    <div class="card ma-4">
+      <h1><%= link_to fanfic.title, fanfic_path(fanfic) %></h1>
+      <h3><%= t("fanfic.user") %>: <%= link_to fanfic.author.name, fanfic.author %></h3>
+      <%= render partial: 'rating/show', locals: { fanfic: fanfic, readonly: "read-only='true'" } %>
+      <p><%= fanfic.description %></p>
+      <p><br><%= fanfic.genre.name %></br></p>
+      <p><small><%= raw all_tags(fanfic) %></small></p>
+      <small class="font-weight-light"><%= fanfic.created_at %></small>
+    </div>
   </div>
   <br>
 <% end %>

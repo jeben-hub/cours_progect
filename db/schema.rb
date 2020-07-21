@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_131123) do
+ActiveRecord::Schema.define(version: 2020_07_19_201820) do
 
   create_table "chapters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
@@ -96,6 +96,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_131123) do
     t.string "activation_state"
     t.string "activation_token"
     t.datetime "activation_token_expires_at"
+    t.string "locale", default: "en"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["email"], name: "index_users_on_email", unique: true
   end

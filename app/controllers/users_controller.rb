@@ -1,14 +1,19 @@
 class UsersController < ApplicationController
   include ApplicationHelper
-  skip_before_action :require_login, only: [:new, :create, :activate, :show, :update_attribute_on_the_spot]
-  skip_before_action :require_not_blocked, only: [:new, :create, :show, :destroy, :update_attribute_on_the_spot]
-  skip_before_action :require_activate, only: [:activate, :new, :create, :show, :destroy, :update_attribute_on_the_spot]
+  skip_before_action :require_login, only: [:new, :create, :activate, :show, :update_attribute_on_the_spot, :user_locale]
+  skip_before_action :require_not_blocked, only: [:new, :create, :show, :destroy, :update_attribute_on_the_spot, :user_locale]
+  skip_before_action :require_activate, only: [:activate, :new, :create, :show, :destroy, :update_attribute_on_the_spot, :user_locale]
   before_action :set_user, only: [:make_admin, :block, :unblock, :show, :destroy]
   before_action :require_admin, only: [:make_admin, :block, :unblock, :index]
   before_action :admin_protect, only: [:make_admin, :block, :unblock, :destroy]
   before_action :save_email, only: [:update_attribute_on_the_spot]
 
   can_edit_on_the_spot is_allowed: :check_access_to_edit, on_success: :new_email
+
+  def user_locale
+    User.find(current_user.id).set_user_locale(available_locale) if current_user
+    redirect_to root_path
+  end
 
   def index
     @users = User.all
@@ -80,6 +85,10 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def available_locale
+    I18n.available_locales.map(&:to_s).include?(params[:locale]) ? params[:locale] : :en
+  end
 
   def email_is_new?(new_email)
     @old_email != new_email

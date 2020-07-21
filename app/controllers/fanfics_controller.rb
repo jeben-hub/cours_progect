@@ -9,9 +9,9 @@ class FanficsController < ApplicationController
   # GET /fanfics.json
   def index
     if @tag_name = params[:tag]
-      @fanfics = Tag.find_by_name(@tag_name).fanfics
+      @fanfics = Tag.find_by_name(@tag_name).fanfics.order(created_at: :desc)
     else
-      @fanfics = Fanfic.all
+      @fanfics = Fanfic.order(created_at: :desc)
     end
   end
 

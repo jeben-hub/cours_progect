@@ -6,7 +6,7 @@
   </div>
 
   <div class="actions">
-    <%= form.submit 'Comment', id: "btn-comment" %>
+    <%= form.submit t('global.forms.submit'), id: "btn-comment" %>
   </div>
 <% end %>
 
@@ -18,5 +18,5 @@
   <h3><%= comment.user.name %></h3>
   <small><%= comment.created_at.strftime("%m/%d/%Y at %I:%M%p") %></small>
   <p><%= comment.body %></p>
-  <%= link_to 'Delete', comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' } if has_access?(comment.user.id) %>
+  <%= link_to t("global.destroys"), comment_path(comment), method: :delete, data: { confirm: t("global.confirm") } if has_access?(comment.user.id) %>
 <% end %>

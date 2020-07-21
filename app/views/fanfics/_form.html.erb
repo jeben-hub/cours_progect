@@ -10,7 +10,7 @@
 
   <div class="input">
     <%= form.label :genre %>
-    <%= form.collection_select :genre_id, Genre.all, :id, :name, include_blank: true %>
+    <%= form.collection_select :genre_id, Genre.all, :id, :name %>
   </div>
 
   <div class="input">
@@ -19,5 +19,5 @@
   </div>
 
   <div class="action">
-    <%= form.submit %>
+    <%= form.submit t("global.forms.create") %>
   </div>

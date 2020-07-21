@@ -29,4 +29,8 @@ class User < ApplicationRecord
     self.update_attribute("activation_state", "pending")
     self.update_attribute("activation_token", Sorcery::Model::TemporaryToken.generate_random_token)
   end
+
+  def set_user_locale(locale)
+    self.update_attribute("locale", locale)
+  end
 end
