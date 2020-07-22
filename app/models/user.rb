@@ -33,4 +33,8 @@ class User < ApplicationRecord
   def set_user_locale(locale)
     self.update_attribute("locale", locale)
   end
+
+  def set_dark_theme
+    self.update_attribute("dark_theme", !self.dark_theme)
+  end
 end

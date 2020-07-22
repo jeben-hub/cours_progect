@@ -10,6 +10,10 @@ class UsersController < ApplicationController
 
   can_edit_on_the_spot is_allowed: :check_access_to_edit, on_success: :new_email
 
+  def user_theme
+    User.find(current_user.id).set_dark_theme if current_user
+  end
+
   def user_locale
     User.find(current_user.id).set_user_locale(available_locale) if current_user
     redirect_to root_path

@@ -28,6 +28,10 @@ document.addEventListener("turbolinks:load", function() {
      } else {
        $("body").attr("data-theme", "light")
      }
+     $.ajax({
+       type: "GET",
+       url: "/user_theme"
+     });
   });
 });
 // Uncomment to copy all static images under ../images to the output folder and reference

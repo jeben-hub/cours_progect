@@ -28,5 +28,6 @@ Rails.application.routes.draw do
     get 'tags/:tag', to: 'fanfics#index', as: :tag
     post '/chapters_sort', to: 'chapters#sort'
     get '/user_locale', to: 'users#user_locale'
+    get '/user_theme', to: 'users#user_theme'
   end
 end

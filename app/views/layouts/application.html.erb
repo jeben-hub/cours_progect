@@ -10,15 +10,14 @@
     <%= favicon_link_tag asset_path('logo_oko.png') %>
   </head>
 
-  <body>
-    <input type="checkbox" id="themeSwitch">
-    <label for="themeSwitch">Dark Mode</label>
+  <body data-theme=<%= current_theme %>>
     <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
       <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to t("mordor"), root_path %></h5>
       <ul>
         <li><%= link_to 'English', user_locale_path(locale: :en) %></li>
         <li><%= link_to 'Русский', user_locale_path(locale: :ru) %></li>
       </ul>
+      <%= render 'layouts/dark_mode' %>
       <%= render 'search/form' %>
       <% if current_user %>
         <nav class="my-2 my-md-0 mr-md-3">
