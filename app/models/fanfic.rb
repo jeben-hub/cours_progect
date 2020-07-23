@@ -22,4 +22,15 @@ class Fanfic < ApplicationRecord
   def all_tags
     self.tags.map(&:name).join(", ")
   end
+
+  def self.top(count)
+    Fanfic.all.sort do |a, b|
+      b.midle_rating <=> a.midle_rating
+    end.first(count)
+  end
+
+  def midle_rating
+    self.rating.all.map(&:rate).sum.to_f / self.rating.all.count
+  end
+
 end
