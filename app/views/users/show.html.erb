@@ -29,7 +29,7 @@
 
 
   <% if has_access?(@user.id) %>
-    <%= link_to 'New Fanfic', new_user_fanfic_path(@user) %>
+    <%= link_to t("global.new.fanfic"), new_user_fanfic_path(@user) %>
     <%= link_to t("users.menegment.delete"), user_path(@user), method: :delete, data: { confirm: t("global.confirm") } %>
   <% end %>
   <% if current_user_admin? && !@user.admin? %>

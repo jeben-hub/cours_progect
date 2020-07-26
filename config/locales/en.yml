@@ -22,6 +22,8 @@ en:
       log_in: Log In
       sign_up: Sign Up
       all_users: User Management
+    comment:
+      comments: Comments
   fanfic:
     title: Title
     description: Description
@@ -29,6 +31,9 @@ en:
     user: Author
     tegs: Tegs
   global:
+    new:
+      fanfic: New fanfic
+      chapter: New chapter
     confirm: Are you sure?
     edit: Edit
     destroy: Destroy
@@ -36,6 +41,7 @@ en:
     forms:
       search: Search
       create: Create
-      submit: Submit
+      submit: Save
+      comment: Comment
     root: Home page
     title: Mordor - a technogenic civilization, discredited by the victors

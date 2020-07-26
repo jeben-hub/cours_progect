@@ -10,7 +10,7 @@ ru:
     menegment:
       user: Пользователь
       created_at: Дата регистрации
-      admin: Администратор
+      admin: Админ
       status: Статус блокировки
       make_admin: Сделать админом
       blocked: Заблокирован
@@ -29,7 +29,12 @@ ru:
     genre: Жанр
     user: Автор
     tegs: Теги
+  comment:
+    comments: Комментарии
   global:
+    new:
+      fanfic: Новый фанфик
+      chapter: Новая глава
     confirm: Вы уверены?
     edit: Редактировать
     destroy: Удалить
@@ -37,6 +42,7 @@ ru:
     forms:
       search: Найти
       create: Создать
-      submit: Отправить
+      submit: Сохранить
+      comment: Комментировать
     root: Главная страница
     title: Мордор — техногенная цивилизация, опороченная победителями

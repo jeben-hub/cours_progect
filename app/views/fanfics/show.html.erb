@@ -25,9 +25,9 @@
 
   <%= render partial: 'chapters/table_of_chapters', locals: { fanfic: @fanfic } %>
 
-  <%= link_to 'New Chapter', new_fanfic_chapter_path(@fanfic) %>
+  <%= link_to t("global.new.chapter"), new_fanfic_chapter_path(@fanfic) %>
   <%= render partial: 'rating/show', locals: { fanfic: @fanfic, readonly: nil } %>
-  <%= link_to 'Back', root_path %>
+  <%= link_to t("global.back"), root_path %>
   <%= render partial: 'comments/index', locals: { fanfic: @fanfic, comments: @comments } %>
 
 </div>

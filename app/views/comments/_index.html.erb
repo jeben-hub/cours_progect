@@ -1,8 +1,8 @@
+<h2 class="text-center"><%= t("comment.comments") %></h2>
 <%= form_for([fanfic, fanfic.comments.build]) do |form| %>
 
   <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
+    <%= form.text_area :body, class: "form-control", row: 3 %>
   </div>
 
   <div class="actions">

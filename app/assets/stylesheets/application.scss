@@ -37,12 +37,24 @@
   --card-color: black;
 }
 
+.tecnic {
+  font-family: serif;
+}
+
 body {
   color: var(--text-color);
   background-color: var(--background-color);
-  .card {
-    background-color: var(--card-color);
-  }
+}
+.card {
+  background-color: var(--card-color);
+}
+
+
+body, p, div, a {
+  font-family: "lotr_font";
+}
+
+a {
   font-family: "lotr_font";
 }
 
@@ -54,7 +66,3 @@ a:visited {
 
 a:hover {
   color: #005F5F; }
-
-.mordor-header {
-
-}

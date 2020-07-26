@@ -1,5 +1,5 @@
 <div class="card p-2">
-  <table class="footable table table-bordered toggle-arrow-tiny" data-page-size="31" data-filter=#filter>
+  <table class="tecnic footable table table-bordered toggle-arrow-tiny">
   <thead>
     <tr>
       <th>id</th>
@@ -25,19 +25,19 @@
       <% unless item.admin? %>
       <td><%= t("users.menegment." + (item.blocked? ? "blocked" : "active")) %></td>
       <% if item.blocked? %>
-        <td><%= link_to t("users.menegment.unblock"), unblock_user_path(item), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t("users.menegment.unblock"), unblock_user_path(item), data: { confirm: 'Are you sure?' }, class: "tecnic" %></td>
       <% else %>
-        <td><%= link_to t("users.menegment.block"), block_user_path(item), data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t("users.menegment.block"), block_user_path(item), data: { confirm: 'Are you sure?' }, class: "tecnic" %></td>
       <% end %>
-      <td><%= link_to t("users.menegment.delete"), user_path(item), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <th><%= link_to t("users.menegment.make_admin"), make_admin_user_path(item), data: { confirm: 'Are you sure?' } %></th>
+      <td><%= link_to t("users.menegment.delete"), user_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: "tecnic" %></td>
+      <th><%= link_to t("users.menegment.make_admin"), make_admin_user_path(item), data: { confirm: 'Are you sure?' }, class: "tecnic" %></th>
       <% end %>
     </tr>
   <% end %>
   </tbody>
   <tfoot>
   <tr>
-      <td colspan="12">
+      <td colspan="9">
    <ul class="pagination pull-right"></ul>
       </td>
   </tr>
