@@ -17,10 +17,10 @@
 @import 'easy-autocomplete/dist/easy-autocomplete';
 
 @font-face {
-font-family: "lotr_font";
-src: url("lotr_font.ttf") format("truetype");
-font-style: normal;
-font-weight: normal;
+  font-family: "lotr_font";
+  src: asset-url("lotr_font.ttf") format("truetype");
+  font-style: normal;
+  font-weight: normal;
 }
 
 /* Light mode */
