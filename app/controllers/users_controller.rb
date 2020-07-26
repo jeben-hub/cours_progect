@@ -50,7 +50,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       login(params[:user][:email], params[:user][:password])
-      flash[:warning] = 'Activation message sent to ' + @user.email
+      flash[:warning] = t("notice.sent") + " " + @user.email
       redirect_to root_path
     else
       render 'new'
@@ -61,17 +61,17 @@ class UsersController < ApplicationController
     if has_access?(params[:id].to_i)
       @user.destroy
     else
-      flash[:warning] = 'Cannot delete this user.'
+      flash[:warning] = t("notice.not_delete")
     end
     redirect_to root_path
   end
 
   def activate
-    if @user = User.load_from_activation_token(params[:id])
+    if @user = User.load_from_activation_token(params[:authenticity_token])
       @user.activate!
-      flash[:success] = 'User was successfully activated.'
+      flash[:success] = t("notice.successfully_activated")
     else
-      flash[:warning] = 'Cannot activate this user.'
+      flash[:warning] = t("notice.not_activate")
     end
     redirect_to root_path
   end
@@ -105,17 +105,17 @@ class UsersController < ApplicationController
   def new_email_confirm(user)
     user.deactivate
     UserMailer.activation_needed_email(user).deliver_later
-    flash[:warning] = 'Activation message sent to ' + user.email
+    flash[:warning] = t("notice.sent") + " " + user.email
   end
 
   def admin_protect
     return unless @user.admin?
-    redirect_back fallback_location: root_path, alert: 'You have no asses to do this with admin'
+    redirect_back fallback_location: root_path, alert: access
   end
 
   def require_admin
     return if current_user.admin?
-    redirect_back_or_to root_path, alert: 'You have no asses to do this'
+    redirect_back_or_to root_path, alert: t("notice.asses")
   end
 
   def set_user

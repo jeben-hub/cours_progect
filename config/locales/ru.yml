@@ -6,6 +6,15 @@ ru:
         password: Пароль
         password_confirmation: Подтвердите пароль
         name: Имя
+  chapters:
+    table: Перетащите чтобы изменить
+    new: Новая глава
+    editing: Редактирование Главы
+    name: Название
+    body: Текст главы
+    picture: Иллюстрация
+    next: Следущая глава
+    prev: Предыдущая глава
   users:
     menegment:
       user: Пользователь
@@ -24,25 +33,48 @@ ru:
       sign_up: Регистрация
       all_users: Управление пользователями
   fanfic:
+    editing: Редактирование фанфика
+    last: Последние фанфики
     title: Название
     description: Описание
     genre: Жанр
     user: Автор
-    tegs: Теги
+    tags: Теги
+    new: Новый фанфик
+  like:
+    like: Лайк
+    likes_count: Количество лайков
+    unlike: Не нравиться
   comment:
     comments: Комментарии
   global:
     new:
       fanfic: Новый фанфик
       chapter: Новая глава
+    dark: Темная тема
+    top: Топ
+    cloud: Облако тегов
     confirm: Вы уверены?
     edit: Редактировать
     destroy: Удалить
     back: Назад
+    by: от
+    chapters: Главы
     forms:
       search: Найти
       create: Создать
-      submit: Сохранить
+      save: Сохранить
       comment: Комментировать
+      add: Добавить
     root: Главная страница
     title: Мордор — техногенная цивилизация, опороченная победителями
+  notice:
+    access: У вас нет доступа, чтобы сделать это
+    authenticate: Вам необходимо пройти аунтефикацию для доступа
+    blocked: Ваш акквунт был заблокирован
+    activate: Вам необходимо активировать аккаунт
+    incorrect: Неверная почта или пароль
+    sent: Письмо активации отправлено
+    not_delete: Не удается удалить этого пользователя
+    successfully_activated: Аккаунт успешно активирован
+    not_activate: Не удается активировать этого пользователя

@@ -9,7 +9,7 @@ class SearchController < ApplicationController
     if @term.nil?
       @articles = []
     else
-      @fanfics = search_all
+      @fanfics = search_all.uniq
     end
   end
 

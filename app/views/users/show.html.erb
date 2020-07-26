@@ -3,7 +3,7 @@
   <h1><%= "Blocked" if @user.blocked? %></h1>
   <h3><%= on_the_spot_edit @user, :name %></h3>
   <h3><%= on_the_spot_edit @user, :email %></h3>
-  <table>
+  <table class="tecnic footable table table-bordered toggle-arrow-tiny">
     <thead>
       <tr>
         <th><%= t("fanfic.title") %></th>

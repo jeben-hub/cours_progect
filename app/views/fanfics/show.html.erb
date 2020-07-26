@@ -2,24 +2,24 @@
   <h1 class="text-center"><%= @fanfic.title %></h1>
 
   <p>
-    <strong>Description:</strong>
+    <%= t("fanfic.description") %>:
     <%= @fanfic.description %>
   </p>
 
   <p>
-    <strong>Genre:</strong>
+    <%= t("fanfic.genre") %>:
     <%= @fanfic.genre.name %>
   </p>
 
   <p>
-    <strong>Author:</strong>
+    <%= t("global.by") %>:
     <%= link_to @fanfic.user.name, user_path(@fanfic.user) %>
   </p>
 
   <p>
-    Tags:
+    <%= t("fanfic.tags") %>:
     <% @fanfic.tags.each do |tag| %>
-      <%= link_to tag.name, root_path %>
+      <%= link_to tag.name, root_path(tag: tag.name), class: "btn btn-outline-secondary btn-sm mb-1" %>
     <% end %>
   </p>
 

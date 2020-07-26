@@ -4,7 +4,7 @@
       <% if @tag_name %>
         <%=link_to @tag_name, tag_path(@tag_name), class: "btn btn-outline-secondary btn-lg" %>
       <% else %>
-        <h3 class="text-center"><%= "Latest fanfics" %></h3>
+        <h3 class="text-center"><%= t("fanfic.last") %></h3>
       <% end %>
     </h2>
     <% @fanfics.each do |fanfic| %>
@@ -12,8 +12,9 @@
         <h3 class="card-title"><%= link_to fanfic.title, fanfic_path(fanfic) %></h3>
         <hr>
         <p class="card-link">
-          <small class="font-weight-light"><%= fanfic.created_at %></small>
-           by <%= link_to fanfic.author.name, fanfic.author %>
+          <small class="font-weight-light"><%= fanfic.created_at.strftime("%m/%d/%Y at %I:%M%p") %></small>
+           <%= t("global.by") %>
+           <%= link_to fanfic.author.name, fanfic.author %>
         </p>
         <div class="row">
           <h6 class="col"><%= fanfic.genre.name %></h6>

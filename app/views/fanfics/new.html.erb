@@ -1,5 +1,5 @@
 <div class="card p-2 d-flex justify-content-center">
-  <h1>New Fanfic</h1>
+  <h1 class="text-center"><%= t("fanfic.new") %></h1>
   <%= form_for @fanfic, :url => { :action => "create" } do |form| %>
     <%= render partial: 'form', locals: { form: form } %>
   <% end %>
@@ -7,4 +7,4 @@
   <div class="d-flex justify-content-center">
     <%= link_to t('global.back'), fanfics_path %>
   </div>
-</div>  
+</div>

@@ -74,7 +74,7 @@ class ChaptersController < ApplicationController
 
     def require_asses_to_chapters
       return if has_access?(Fanfic.find(params[:fanfic_id]).user_id)
-      redirect_back_or_to root_path, alert: 'You have no asses to do this'
+      redirect_back_or_to root_path, alert: t("notice.access")
     end
 
     def set_chapter

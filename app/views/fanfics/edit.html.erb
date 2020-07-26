@@ -1,5 +1,5 @@
 <div class="card p-2">
-  <h1>Editing Fanfic</h1>
+  <h1 class="text-center"><%= t("fanfic.editing") %></h1>
 
   <%= form_for @fanfic, :url => { :action => "update" } do |form| %>
     <%= render partial: 'form', locals: { form: form } %>

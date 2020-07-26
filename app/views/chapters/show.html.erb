@@ -3,8 +3,11 @@
     <%= @chapter.name %>
   </h2>
 
-  <p class="mr-1">
+
+  <div class="d-flex justify-content-center">
     <img src="<%= picture(@chapter)%>" class="mr-2">
+  </div>
+  <p class="mr-1">
     <%= markdown(@chapter.body) %>
   </p>
 
@@ -21,5 +24,5 @@
       </div>
     </div>
   </div>
-  <%= link_to 'Back', fanfic_path(@chapter.fanfic) %>
+  <%= link_to t("global.back"), fanfic_path(@chapter.fanfic) %>
 </div>

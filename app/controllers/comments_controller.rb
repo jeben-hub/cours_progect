@@ -8,8 +8,9 @@ class CommentsController < ApplicationController
   def create
     @comment = @fanfic.comments.new(comment_params)
     @comment.user = current_user
-    @comment.save
-    ActionCable.server.broadcast "fanfic_#{@fanfic.id}", comments_data
+    if @comment.save
+      ActionCable.server.broadcast "fanfic_#{@fanfic.id}", comments_data
+    end
     redirect_to @fanfic
   end
 
@@ -18,7 +19,7 @@ class CommentsController < ApplicationController
     if @comment.user_id == current_user.id || current_user.admin?
       @comment.destroy
     else
-      flash[:warning] = 'You have no asses to do this.'
+      flash[:warning] = t("notice.access")
     end
     redirect_to @comment.fanfic
   end

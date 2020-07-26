@@ -11,18 +11,18 @@ class ApplicationController < ActionController::Base
   end
 
   def not_authenticated
-    flash[:warning] = 'You have to authenticate to access this page.'
+    flash[:warning] = t("notice.authenticate")
     redirect_to log_in_path
   end
 
   def require_not_blocked
     return unless current_user.blocked?
-    redirect_to user_path(current_user), alert: 'Your accoun has blocked'
+    redirect_to user_path(current_user), alert: t("notice.blocked")
   end
 
   def require_activate
     return if current_user.active?
-    redirect_to user_path(current_user), alert: 'You have to activate your account'
+    redirect_to user_path(current_user), alert: t("notice.activate")
   end
 
   def set_locale

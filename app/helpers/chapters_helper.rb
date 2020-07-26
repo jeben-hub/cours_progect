@@ -11,14 +11,14 @@ module ChaptersHelper
   def link_to_next(chapter)
     chapters = chapter.fanfic.chapters
     return nil unless next_chapter = chapters[chapter.number]
-    link_to "Next chapter", fanfic_chapter_path(next_chapter.fanfic, next_chapter), class: "btn btn-secondary"
+    link_to t("chapters.next"), fanfic_chapter_path(next_chapter.fanfic, next_chapter), class: "btn btn-secondary"
   end
 
   def link_to_previos(chapter)
     chapters = chapter.fanfic.chapters
     return nil if chapter.number == 1
     previous_chapter = chapters[chapter.number - 2]
-    link_to "Previous chapter", fanfic_chapter_path(previous_chapter.fanfic, previous_chapter), class: "btn btn-secondary"
+    link_to t("chapters.prev"), fanfic_chapter_path(previous_chapter.fanfic, previous_chapter), class: "btn btn-secondary"
   end
 
   def chapter_pages(current_chapter)

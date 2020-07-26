@@ -1,7 +1,7 @@
 <div class="card p-2">
   <table class="tecnic footable table table-bordered toggle-arrow-tiny">
   <thead>
-    <tr>
+    <tr class="tecnic">
       <th>id</th>
       <th><%= t("activerecord.attributes.user.name") %></th>
       <th><%= t("activerecord.attributes.user.email") %></th>
@@ -16,7 +16,7 @@
 
   <tbody>
     <% @users.each do |item| %>
-    <tr>
+    <tr class="tecnic">
       <td><%= item.id %></td>
       <td><%= item.name %></td>
       <td><%= item.email %></td>
@@ -25,12 +25,12 @@
       <% unless item.admin? %>
       <td><%= t("users.menegment." + (item.blocked? ? "blocked" : "active")) %></td>
       <% if item.blocked? %>
-        <td><%= link_to t("users.menegment.unblock"), unblock_user_path(item), data: { confirm: 'Are you sure?' }, class: "tecnic" %></td>
+        <td><%= link_to t("users.menegment.unblock"), unblock_user_path(item), data: { confirm: t("global.confirm") }, class: "tecnic" %></td>
       <% else %>
-        <td><%= link_to t("users.menegment.block"), block_user_path(item), data: { confirm: 'Are you sure?' }, class: "tecnic" %></td>
+        <td><%= link_to t("users.menegment.block"), block_user_path(item), data: { confirm: t("global.confirm") }, class: "tecnic" %></td>
       <% end %>
-      <td><%= link_to t("users.menegment.delete"), user_path(item), method: :delete, data: { confirm: 'Are you sure?' }, class: "tecnic" %></td>
-      <th><%= link_to t("users.menegment.make_admin"), make_admin_user_path(item), data: { confirm: 'Are you sure?' }, class: "tecnic" %></th>
+      <td><%= link_to t("users.menegment.delete"), user_path(item), method: :delete, data: { confirm: t("global.confirm") }, class: "tecnic" %></td>
+      <th><%= link_to t("users.menegment.make_admin"), make_admin_user_path(item), data: { confirm: t("global.confirm") }, class: "tecnic" %></th>
       <% end %>
     </tr>
   <% end %>

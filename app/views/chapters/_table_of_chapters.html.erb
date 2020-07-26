@@ -1,25 +1,30 @@
-
-<h2>Chapters</h2>
-<div id='<%= has_edit_asses?(fanfic) ? "chapters-edit" : "chapters" %>' >
-  <% fanfic.chapters.each do |chapter| %>
-    <div class="card border-dark mb-1 " id="chapter" chapter-id=<%= chapter.id %>>
-      <ul class="nav nav-pills">
-        <li class="nav-item">
-          <%= link_to chapter.name, fanfic_chapter_path(fanfic, chapter), class: "nav-link" %>
-        </li>
-        <% if has_access?(chapter.fanfic.user_id.to_i) %>
-        <li class="nav-item">
-          <%= link_to 'Edit', edit_fanfic_chapter_path(fanfic, chapter), class: "nav-link" %>
-        </li>
-        <li class="nav-item">
-          <%= link_to 'Destroy', fanfic_chapter_path(fanfic, chapter), class: "nav-link", method: :delete, data: { confirm: 'Are you sure?' } %>
-        </li>
-        <% end %>
-      </ul>
+<div class="mt-2 mb-2">
+  <h2><%= t("global.chapters") %></h2>
+  <div id='<%= has_edit_asses?(fanfic) ? "chapters-edit" : "chapters" %>' >
+    <% fanfic.chapters.each do |chapter| %>
+      <div class="card border-dark mb-1 " id="chapter" chapter-id=<%= chapter.id %>>
+        <ul class="nav nav-pills">
+          <li class="nav-item">
+            <%= link_to chapter.name, fanfic_chapter_path(fanfic, chapter), class: "nav-link" %>
+          </li>
+          <% if has_access?(chapter.fanfic.user_id.to_i) %>
+          <div class="d-flex justify-content-end">
+            <li class="nav-item">
+              <%= link_to t("global.edit"), edit_fanfic_chapter_path(fanfic, chapter), class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to t("global.destroy"), fanfic_chapter_path(fanfic, chapter), class: "nav-link", method: :delete, data: { confirm: 'Are you sure?' } %>
+            </li>
+          </div>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
+  <% if has_edit_asses?(fanfic) %>
+    <div class="actions d-flex justify-content-center">
+      <div class="btn btn-secondary" id="save-chapters-table"><%= t("global.forms.save") %></div>
     </div>
+    <p class="text-center"><small><%= t("chapters.table") %></small></p>
   <% end %>
 </div>
-<% if has_edit_asses?(fanfic) %>
-    <div class="btn btn-secondary" id="save-chapters-table">Save</div>
-    <p class="text-center"><small>drug and drop to edit</small></p>
-<% end %>

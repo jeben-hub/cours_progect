@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
     if login(params[:email], params[:password])
       redirect_back_or_to root_path
     else
-      flash.now[:warning] = 'E-mail and/or password is incorrect.'
+      flash.now[:warning] = t("notice.incorrect")
       render 'new'
     end
   end

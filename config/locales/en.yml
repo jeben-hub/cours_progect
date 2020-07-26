@@ -6,6 +6,15 @@ en:
         password: Password
         password_confirmation: Password Confirmation
         name: Name
+  chapters:
+    table: Drug and drop to edit
+    new: New Chapter
+    editing: Editing Chapter
+    name: Name
+    body: Chapters body
+    picture: Picture
+    next: Next chapter
+    prev: Previous chapter
   users:
     menegment:
       user: user
@@ -22,26 +31,48 @@ en:
       log_in: Log In
       sign_up: Sign Up
       all_users: User Management
-    comment:
-      comments: Comments
+  comment:
+    comments: Comments
   fanfic:
+    editing: Editing fanfic
+    last: Latest fanfics
     title: Title
     description: Description
     genre: Genre
     user: Author
-    tegs: Tegs
+    tags: Tegs
+    new: New fanfic
   global:
     new:
       fanfic: New fanfic
       chapter: New chapter
+    dark: Dark theme
+    top: Top
+    cloud: Tag cloud
     confirm: Are you sure?
     edit: Edit
     destroy: Destroy
     back: Back
+    by: by
+    chapters: Chapters
     forms:
       search: Search
       create: Create
       submit: Save
       comment: Comment
-    root: Home page
+      add: Add
     title: Mordor - a technogenic civilization, discredited by the victors
+  like:
+    like: Like
+    likes_count: Likes count
+    unlike: Unlike
+  notice:
+    access: You have no asses to do this
+    authenticate: You have to authenticate to access this page
+    blocked: Your accoun has blocked
+    activate: You have to activate your account
+    incorrect: E-mail and/or password is incorrect
+    sent: Activation message send to
+    not_delete: Can not delete this user
+    successfully_activated: User was successfully activated
+    not_activate: Cannot activate this user

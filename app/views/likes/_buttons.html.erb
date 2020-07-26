@@ -1,6 +1,6 @@
-<p><%= likes_count(chapter) %></p>
+<p><%= t("like.likes_count") %><%= " " + chapter.likes.count.to_s %></p>
 <% if pre_like(chapter) %>
-  <%= button_to 'Unlike', fanfic_chapter_like_path(chapter_id: chapter.id), method: :delete, class: 'btn btn-secondary btn-lg' %>
+  <%= button_to t("like.unlike"), fanfic_chapter_like_path(chapter_id: chapter.id), method: :delete, class: 'btn btn-secondary btn-lg' %>
 <% else %>
-  <%= button_to 'Like', fanfic_chapter_likes_path(chapter_id: chapter.id), method: :post, class: 'btn btn-secondary btn-lg' %>
+  <%= button_to t("like.like"), fanfic_chapter_likes_path(chapter_id: chapter.id), method: :post, class: 'btn btn-secondary btn-lg' %>
 <% end %>

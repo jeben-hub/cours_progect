@@ -1,17 +1,17 @@
 <div class="form-group">
-  <%= form.label :title %>
+  <%= form.label t("fanfic.title") %>
   <%= form.text_field :title, class: "form-control" %>
   <hr>
-  <%= form.label :description %>
+  <%= form.label t("fanfic.description") %>
   <%= form.text_area :description, class: "form-control", rows: 5  %>
   <hr>
-  <%= form.label :genre %>
+  <%= form.label t("fanfic.genre") %>
   <%= form.collection_select :genre_id, Genre.all, :id, :name, class: "form-control" %>
   <hr>
-  <%= form.label :all_tags %><br />
+  <%= form.label t("fanfic.tags") %><br />
   <%= form.text_field :all_tags, id: "tags_field", class: "form-control" %>
   <hr>
   <div class="d-flex justify-content-center">
-    <%= form.submit t("global.forms.submit"), class: 'btn btn-secondary btn-lg' %>
+    <%= form.submit t("global.forms.save"), class: 'btn btn-secondary btn-lg' %>
   </div>
 </div>

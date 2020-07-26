@@ -5,8 +5,8 @@
     <%= form.text_area :body, class: "form-control", row: 3 %>
   </div>
 
-  <div class="actions">
-    <%= form.submit t('global.forms.submit'), id: "btn-comment" %>
+  <div class="d-flex justify-content-center">
+    <%= form.submit t('global.forms.add'), class: "btn btn-secondary", id: "btn-comment" %>
   </div>
 <% end %>
 
@@ -15,8 +15,13 @@
 </div>
 
 <% comments.each do |comment| %>
-  <h3><%= comment.user.name %></h3>
-  <small><%= comment.created_at.strftime("%m/%d/%Y at %I:%M%p") %></small>
-  <p><%= comment.body %></p>
-  <%= link_to t("global.destroy"), comment_path(comment), method: :delete, data: { confirm: t("global.confirm") } if has_access?(comment.user.id) %>
+  <hr>
+  <div class="mb-3">
+    <small>
+      <%= comment.created_at.strftime("%m/%d/%Y at %I:%M%p") + " " + t("global.by") %>
+      <%= link_to comment.user.name, user_path(comment.user) %>
+    </small>
+    <p><%= comment.body %></p>
+    <%= link_to t("global.destroy"), comment_path(comment), method: :delete, data: { confirm: t("global.confirm") } if has_access?(comment.user.id) %>
+  </div>
 <% end %>

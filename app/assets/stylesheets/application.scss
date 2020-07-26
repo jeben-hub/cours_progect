@@ -37,10 +37,6 @@
   --card-color: black;
 }
 
-.tecnic {
-  font-family: serif;
-}
-
 body {
   color: var(--text-color);
   background-color: var(--background-color);
@@ -49,8 +45,7 @@ body {
   background-color: var(--card-color);
 }
 
-
-body, p, div, a {
+body, p, div, td, th, a {
   font-family: "lotr_font";
 }
 
@@ -66,3 +61,11 @@ a:visited {
 
 a:hover {
   color: #005F5F; }
+
+.table {
+  color: var(--text-color);
+}
+
+tr.tecnic td, tr.tecnic th, tr.tecnic a{
+  font-family: serif;
+}

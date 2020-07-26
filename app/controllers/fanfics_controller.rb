@@ -40,7 +40,7 @@ class FanficsController < ApplicationController
     @fanfic.user_id = params[:user_id]
     respond_to do |format|
       if @fanfic.save
-        format.html { redirect_to @fanfic, notice: 'Fanfic was successfully created.' }
+        format.html { redirect_to @fanfic }
         format.json { render :show, status: :created, location: @fanfic }
       else
         format.html { render :new }
@@ -54,7 +54,7 @@ class FanficsController < ApplicationController
   def update
     respond_to do |format|
       if @fanfic.update(fanfic_params)
-        format.html { redirect_to @fanfic, notice: 'Fanfic was successfully updated.' }
+        format.html { redirect_to @fanfic }
         format.json { render :show, status: :ok, location: @fanfic }
       else
         format.html { render :edit }
@@ -68,7 +68,7 @@ class FanficsController < ApplicationController
   def destroy
     @fanfic.destroy
     respond_to do |format|
-      format.html { redirect_back fallback_location: root_path, notice: 'Fanfic was successfully destroyed.' }
+      format.html { redirect_back fallback_location: root_path }
       format.json { head :no_content }
     end
   end
@@ -88,7 +88,7 @@ class FanficsController < ApplicationController
     def require_asses_to_fanfics
       expected_user_id = @fanfic ? @fanfic.author.id : params[:user_id].to_i
       return if has_access?(expected_user_id)
-      redirect_back_or_to root_path, alert: 'You have no asses to do this'
+      redirect_back_or_to root_path, alert: t("notice.access")
     end
 
 end

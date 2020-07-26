@@ -12,21 +12,21 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :name %>
+    <%= form.label t("chapters.name") %>
     <%= form.text_field :name, class: "form-control" %>
   </div>
 
   <div class="field">
-    <%= form.label :body %>
+    <%= form.label t("chapters.body") %>
     <%= form.text_area :body, class: "form-control", row: 5 %>
   </div>
   <div class="field">
-    <%= form.label :picture %>
+    <%= form.label t("chapters.picture") %>
     <div class="fallback">
       <%= form.file_field :picture, class: 'dropzone', class: "form-control" %>
     </div>
   </div>
 
   <div class="actions d-flex justify-content-center">
-    <%= form.submit t("global.forms.submit"), class: 'btn btn-secondary btn-lg' %>
+    <%= form.submit t("global.forms.save"), class: 'btn btn-secondary btn-lg' %>
   </div>
