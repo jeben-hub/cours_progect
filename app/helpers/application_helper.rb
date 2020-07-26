@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def current_theme
-    return nil unless current_user
+    return "light" unless current_user
     current_user.dark_theme ? "dark" : "light"
   end
 end

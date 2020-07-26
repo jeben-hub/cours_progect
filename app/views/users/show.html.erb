@@ -1,41 +1,43 @@
-<h1><%= "ADMIN" if @user.admin? %></h1>
-<h1><%= "Blocked" if @user.blocked? %></h1>
-<h3><%= on_the_spot_edit @user, :name %></h3>
-<h3><%= on_the_spot_edit @user, :email %></h3>
-<table>
-  <thead>
-    <tr>
-      <th><%= t("fanfic.title") %></th>
-      <th><%= t("fanfic.description") %></th>
-      <th><%= t("fanfic.genre") %></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @fanfics.each do |fanfic| %>
+<div class="card p-2">
+  <h1><%= link_to t("users.btn.all_users"), users_path, class: 'btn btn-secondary' if current_user_admin? && @user.admin? %></h1>
+  <h1><%= "Blocked" if @user.blocked? %></h1>
+  <h3><%= on_the_spot_edit @user, :name %></h3>
+  <h3><%= on_the_spot_edit @user, :email %></h3>
+  <table>
+    <thead>
       <tr>
-        <td><%= link_to fanfic.title, fanfic_path(fanfic) %></td>
-        <td><%= fanfic.description %></td>
-        <td><%= fanfic.genre.name %></td>
-        <% if has_access?(@user.id) %>
-          <td><%= link_to t("global.edit"), edit_fanfic_path(fanfic) %></td>
-          <td><%= link_to t("global.destroy"), fanfic_path(fanfic), method: :delete, data: { confirm: t("global.confirm") }%></td>
-        <% end %>
+        <th><%= t("fanfic.title") %></th>
+        <th><%= t("fanfic.description") %></th>
+        <th><%= t("fanfic.genre") %></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @fanfics.each do |fanfic| %>
+        <tr>
+          <td><%= link_to fanfic.title, fanfic_path(fanfic) %></td>
+          <td><%= fanfic.description %></td>
+          <td><%= fanfic.genre.name %></td>
+          <% if has_access?(@user.id) %>
+            <td><%= link_to t("global.edit"), edit_fanfic_path(fanfic) %></td>
+            <td><%= link_to t("global.destroy"), fanfic_path(fanfic), method: :delete, data: { confirm: t("global.confirm") }%></td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
 
-<% if has_access?(@user.id) %>
-  <%= link_to 'New Fanfic', new_user_fanfic_path(@user) %>
-  <%= link_to t("users.menegment.delete"), user_path(@user), method: :delete, data: { confirm: t("global.confirm") } %>
-<% end %>
-<% if current_user_admin? && !@user.admin? %>
-  <%= link_to t("users.menegment.make_admin"), make_admin_user_path(@user), data: { confirm: t("global.confirm") } %>
-  <% if @user.blocked? %>
-    <%= link_to t("users.menegment.unblock"), unblock_user_path(@user), data: { confirm: t("global.confirm") } %>
-  <% else %>
-    <%= link_to t("users.menegment.block"), block_user_path(@user), data: { confirm: t("global.confirm") } %>
+  <% if has_access?(@user.id) %>
+    <%= link_to 'New Fanfic', new_user_fanfic_path(@user) %>
+    <%= link_to t("users.menegment.delete"), user_path(@user), method: :delete, data: { confirm: t("global.confirm") } %>
   <% end %>
-<% end %>
+  <% if current_user_admin? && !@user.admin? %>
+    <%= link_to t("users.menegment.make_admin"), make_admin_user_path(@user), data: { confirm: t("global.confirm") } %>
+    <% if @user.blocked? %>
+      <%= link_to t("users.menegment.unblock"), unblock_user_path(@user), data: { confirm: t("global.confirm") } %>
+    <% else %>
+      <%= link_to t("users.menegment.block"), block_user_path(@user), data: { confirm: t("global.confirm") } %>
+    <% end %>
+  <% end %>
+</div>

@@ -1,9 +1,5 @@
 
 <h2>Chapters</h2>
-<% if has_edit_asses?(fanfic) %>
-    <div class="btn btn-secondary" id="save-chapters-table">Save</div>
-    <p><small>drug and drop to edit</small></p>
-<% end %>
 <div id='<%= has_edit_asses?(fanfic) ? "chapters-edit" : "chapters" %>' >
   <% fanfic.chapters.each do |chapter| %>
     <div class="card border-dark mb-1 " id="chapter" chapter-id=<%= chapter.id %>>
@@ -23,3 +19,7 @@
     </div>
   <% end %>
 </div>
+<% if has_edit_asses?(fanfic) %>
+    <div class="btn btn-secondary" id="save-chapters-table">Save</div>
+    <p class="text-center"><small>drug and drop to edit</small></p>
+<% end %>

@@ -15,19 +15,46 @@
  */
 @import "bootstrap/scss/bootstrap";
 @import 'easy-autocomplete/dist/easy-autocomplete';
+
+@font-face {
+font-family: "lotr_font";
+src: url("lotr_font.ttf") format("truetype");
+font-style: normal;
+font-weight: normal;
+}
+
 /* Light mode */
 [data-theme="light"] {
   --background-color: white;
   --text-color: black;
+  --card-color: #E6E6FA;
 }
 
 /* Dark mode */
 [data-theme="dark"] {
-  --background-color: black;
+  --background-color: #303232;
   --text-color: white;
+  --card-color: black;
 }
 
 body {
   color: var(--text-color);
   background-color: var(--background-color);
+  .card {
+    background-color: var(--card-color);
+  }
+  font-family: "lotr_font";
+}
+
+a {
+  color: var(--text-color); }
+
+a:visited {
+  color: var(--text-color); }
+
+a:hover {
+  color: #005F5F; }
+
+.mordor-header {
+
 }

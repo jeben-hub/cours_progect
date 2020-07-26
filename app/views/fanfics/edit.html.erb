@@ -1,9 +1,11 @@
-<h1>Editing Fanfic</h1>
+<div class="card">
+  <h1>Editing Fanfic</h1>
 
-<%= form_for @fanfic, :url => { :action => "update" } do |form| %>
-  <%= render partial: 'form', locals: { form: form } %>
-<% end %>
+  <%= form_for @fanfic, :url => { :action => "update" } do |form| %>
+    <%= render partial: 'form', locals: { form: form } %>
+  <% end %>
 
 
-<%= link_to 'Show', @fanfic %> |
-<%= link_to t('global.back'), fanfics_path %>
+  <%= link_to 'Show', @fanfic %> |
+  <%= link_to t('global.back'), fanfics_path %>
+</div>

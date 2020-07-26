@@ -11,30 +11,45 @@
   </head>
 
   <body data-theme=<%= current_theme %>>
-    <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
-      <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to t("mordor"), root_path %></h5>
-      <ul>
-        <li><%= link_to 'English', user_locale_path(locale: :en) %></li>
-        <li><%= link_to 'Русский', user_locale_path(locale: :ru) %></li>
-      </ul>
-      <%= render 'layouts/dark_mode' %>
-      <%= render 'search/form' %>
-      <% if current_user %>
-        <nav class="my-2 my-md-0 mr-md-3">
-          <span><%= link_to current_user.name, current_user %></span>
-        </nav>
-        <%= link_to t("users.btn.log_out"), log_out_url, class: 'btn btn-primary btn-xs', method: :delete %>
-        <%= link_to t("users.btn.all_users"), users_path, class: 'btn btn-primary btn-xs' if current_user_admin? %>
-      <% else %>
-        <%= link_to t("users.btn.log_in"), log_in_url, class:  'btn btn-primary mr-1' %>
-        <%= link_to t("users.btn.sign_up"), sign_up_url, class: 'btn btn-primary' %>
-      <% end %>
-    </div>
-    <% flash.each do |name, msg| -%>
-      <%= content_tag :div, msg, class: name %>
-    <% end -%>
-
     <div class="container">
+      <header class="mordor-header p-1">
+        <h4 class="text-center">
+          <%= link_to image_tag('logo_icon.png', size: '50') + t("global.title"), root_path %>
+        </h4>
+        <hr>
+        <div class="row">
+          <div class="col-mg-auto pt-1 ml-3">
+            <%= render 'search/form' %>
+          </div>
+
+          <div class="col d-flex justify-content-end align-items-center">
+            <% if current_user %>
+              <%= link_to current_user.name, current_user, class: 'btn btn-secondary mr-1' %>
+              <%= link_to t("users.btn.log_out"), log_out_url, class: 'btn btn-secondary', method: :delete %>
+            <% else %>
+              <%= link_to t("users.btn.log_in"), log_in_url, class:  'btn btn-secondary mr-1' %>
+              <%= link_to t("users.btn.sign_up"), sign_up_url, class: 'btn btn-secondary' %>
+            <% end %>
+          </div>
+        </div>
+      </header>
+      <div class="row p-3">
+        <div class="col d-flex justify-content-begin">
+          <small>
+            <%= render 'layouts/dark_mode' %>
+          </small>
+        </div>
+        <div class="col d-flex justify-content-end">
+          <small>
+            <%= link_to 'Русский', user_locale_path(locale: :ru) %>
+            <%= link_to 'English', user_locale_path(locale: :en) %>
+          </small>
+        </div>
+
+      </div>
+      <% flash.each do |name, msg| -%>
+        <%= content_tag :div, msg, class: name %>
+      <% end -%>
       <%= yield %>
     </div>
   </body>

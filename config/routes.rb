@@ -4,12 +4,12 @@ Rails.application.routes.draw do
     root 'fanfics#index'
     # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
     resources :users, only: [:new, :create, :show, :index, :destroy] do
+      member do
+        get :activate, :make_admin, :block, :unblock
+      end
       collection do
         put :update_attribute_on_the_spot
         get :get_attribute_on_the_spot
-      end
-      member do
-        get :activate, :make_admin, :block, :unblock
       end
       resources :fanfics, except: [:index], shallow: true do
         resources :chapters, except: [:index], shallow: false do

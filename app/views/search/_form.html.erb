@@ -1,6 +1,10 @@
+
+
 <%= form_for :term, url: search_path, method: :get do |form| %>
-  <p>
-    <%= text_field_tag :term, params[:term] %>
-    <%= submit_tag t("global.forms.search"), name: nil %>
-  </p>
+  <div class="input-group mb-3">
+    <%= text_field_tag :term, params[:term], class: "form-control", "aria-describedby" => "button-addon", type:"text" %>
+    <div class="input-group-append">
+      <%= submit_tag t("global.forms.search"), name: nil, class: "btn btn-outline-secondary", id: "button-addon" %>
+    </div>
+  </div>
 <% end %>

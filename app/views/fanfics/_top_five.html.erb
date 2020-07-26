@@ -1,9 +1,12 @@
-<div class="col">
-  <h3 class="text-center">Top 5</h3>
-  <% @top_fanfics.each do |fanfic| %>
-  <div class="row">
-      <div class="col"><h6><%= link_to fanfic.title, fanfic_path(fanfic) %></h6></div>
-      <div class="col"><%= render partial: 'rating/show', locals: { fanfic: fanfic, readonly: "read-only='true'" } %></div>
+<div class="card p-2">
+  <div class="card-body">
+    <h3 class="card-title">Top 5</h3>
+    <% @top_fanfics.each do |fanfic| %>
+    <hr>
+    <div class="row">
+        <div class="col"><h6><%= link_to fanfic.title, fanfic_path(fanfic) %></h6></div>
+        <div class="col"><%= render partial: 'rating/show', locals: { fanfic: fanfic, readonly: "read-only='true'" } %></div>
+    </div>
+    <% end %>
   </div>
-  <% end %>
 </div>

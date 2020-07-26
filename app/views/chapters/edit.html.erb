@@ -1,8 +1,10 @@
-<h1>Editing Chapter</h1>
+<div class="card p-2">
+  <h1>Editing Chapter</h1>
 
 
-<%= form_for @chapter, url: {action: "update"} do |form| %>
-  <%= render partial: 'form', locals: { form: form } %>
-<% end %>
+  <%= form_for @chapter, url: {action: "update"} do |form| %>
+    <%= render partial: 'form', locals: { form: form } %>
+  <% end %>
 
-<%= link_to t('global.back'), fanfic_path(@fanfic) %>
+  <%= link_to t('global.back'), fanfic_path(@fanfic) %>
+</div>

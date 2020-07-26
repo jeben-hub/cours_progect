@@ -1,18 +1,20 @@
-<h2>Search Results for: <i><%= params[:term] %></i></h2>
+<div class="card p-2">
+  <h2>Search Results for: <i><%= params[:term] %></i></h2>
 
-<% if @fanfics %>
-<ul class="search_results">
-  <% @fanfics.each do |fanfic| %>
-    <li>
-      <h3>
-        <%= link_to fanfic.title, fanfic_path(fanfic) %>
-      </h3>
-      <p><%= fanfic.description %></p>
-    </li>
+  <% if @fanfics %>
+  <ul class="search_results">
+    <% @fanfics.each do |fanfic| %>
+      <li>
+        <h3>
+          <%= link_to fanfic.title, fanfic_path(fanfic) %>
+        </h3>
+        <p><%= fanfic.description %></p>
+      </li>
+    <% end %>
+  </ul>
+  <% else %>
+    <p>Your search did not match any documents.</p>
   <% end %>
-</ul>
-<% else %>
-  <p>Your search did not match any documents.</p>
-<% end %>
 
-<br>
+  <br>
+</div>

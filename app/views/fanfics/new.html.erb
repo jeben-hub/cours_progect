@@ -1,7 +1,9 @@
-<h1>New Fanfic</h1>
+<div class="card p-2">
+  <h1>New Fanfic</h1>
   <%= form_for @fanfic, :url => { :action => "create" } do |form| %>
     <%= render partial: 'form', locals: { form: form } %>
   <% end %>
 
 
   <%= link_to t('global.back'), fanfics_path %>
+</div>

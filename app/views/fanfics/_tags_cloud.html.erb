@@ -1,0 +1,12 @@
+<div class="card mt-4">
+    <div class="card-body">
+      <h3 class="card-title">Tag cloud</h3>
+      <div class="row">
+        <% Tag.all.each do |tag| %>
+        <div class="col-md-auto">
+          <%= link_to tag.name, tag_path(tag.name), class: "btn btn-outline-secondary btn-sm mb-1" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

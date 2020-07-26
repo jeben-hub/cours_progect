@@ -1,33 +1,33 @@
-<h1>
-  <strong>Title:</strong>
-  <%= @fanfic.title %>
-</h1>
+<div class="card p-2">
+  <h1 class="text-center"><%= @fanfic.title %></h1>
 
-<p>
-  <strong>Description:</strong>
-  <%= @fanfic.description %>
-</p>
+  <p>
+    <strong>Description:</strong>
+    <%= @fanfic.description %>
+  </p>
 
-<p>
-  <strong>Genre:</strong>
-  <%= @fanfic.genre.name %>
-</p>
+  <p>
+    <strong>Genre:</strong>
+    <%= @fanfic.genre.name %>
+  </p>
 
-<p>
-  <strong>Author:</strong>
-  <%= link_to @fanfic.user.name, user_path(@fanfic.user) %>
-</p>
+  <p>
+    <strong>Author:</strong>
+    <%= link_to @fanfic.user.name, user_path(@fanfic.user) %>
+  </p>
 
-<p>
-  Tags:
-  <% @fanfic.tags.each do |tag| %>
-    <%= link_to tag.name, root_path %>
-  <% end %>
-</p>
+  <p>
+    Tags:
+    <% @fanfic.tags.each do |tag| %>
+      <%= link_to tag.name, root_path %>
+    <% end %>
+  </p>
 
-<%= render partial: 'chapters/table_of_chapters', locals: { fanfic: @fanfic } %>
+  <%= render partial: 'chapters/table_of_chapters', locals: { fanfic: @fanfic } %>
 
-<%= link_to 'New Chapter', new_fanfic_chapter_path(@fanfic) %>
-<%= render partial: 'rating/show', locals: { fanfic: @fanfic, readonly: nil } %>
-<%= link_to 'Back', root_path %>
-<%= render partial: 'comments/index', locals: { fanfic: @fanfic, comments: @comments } %>
+  <%= link_to 'New Chapter', new_fanfic_chapter_path(@fanfic) %>
+  <%= render partial: 'rating/show', locals: { fanfic: @fanfic, readonly: nil } %>
+  <%= link_to 'Back', root_path %>
+  <%= render partial: 'comments/index', locals: { fanfic: @fanfic, comments: @comments } %>
+
+</div>
