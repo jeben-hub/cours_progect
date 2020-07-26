@@ -30,7 +30,8 @@ class Fanfic < ApplicationRecord
   end
 
   def midle_rating
-    self.rating.all.map(&:rate).sum.to_f / self.rating.all.count
+    return 0 unless rates = self.rating.all
+    rates.map(&:rate).sum.to_f / rates.count
   end
 
 end
