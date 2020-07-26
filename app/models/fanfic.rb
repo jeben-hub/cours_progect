@@ -25,12 +25,12 @@ class Fanfic < ApplicationRecord
 
   def self.top(count)
     Fanfic.all.sort do |a, b|
-      b.midle_rating.to_i <=> a.midle_rating.to_i
+      b.midle_rating.to_f <=> a.midle_rating.to_f
     end.first(count)
   end
 
   def midle_rating
-    return 0 unless rates = self.rating.all
+    rates = self.rating.all
     rates.map(&:rate).sum.to_f / rates.count
   end
 
