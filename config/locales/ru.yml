@@ -1,6 +1,38 @@
 ru:
   activerecord:
+    errors:
+      models:
+        fanfic:
+          attributes:
+            title:
+              blank: не может быть пустым
+            description:
+              blank: не может быть пустым
+        chapter:
+          attributes:
+            name:
+              blank: не может быть пустым
+            body:
+              blank: не может быть пустым
+        user:
+          attributes:
+            password_confirmation:
+              confirmation: Пароли не совпадают
+            password:
+              too_short: Слишком короткий
+            name:
+              blank: не может быть пустым
+              taken: занято
+            email:
+              taken: занята
+              blank: не может быть пустым
     attributes:
+      fanfic:
+        title: Название
+        description: Описание
+      chapter:
+        name: Название
+        body: Текст главы
       user:
         email: Электронная почта
         password: Пароль
@@ -51,6 +83,8 @@ ru:
     new:
       fanfic: Новый фанфик
       chapter: Новая глава
+    search: Релульнаты поиска
+    failed_search: Ничего не найдено
     dark: Темная тема
     top: Топ
     cloud: Облако тегов
@@ -78,3 +112,5 @@ ru:
     not_delete: Не удается удалить этого пользователя
     successfully_activated: Аккаунт успешно активирован
     not_activate: Не удается активировать этого пользователя
+  error:
+    error_count: Количество ошибок

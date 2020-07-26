@@ -1,19 +1,21 @@
 <div class="card p-2">
-  <h2>Search Results for: <i><%= params[:term] %></i></h2>
+  <p class="mb-4 ml-4">
+    <%= t("global.search") %>:
+    <i><%= params[:term] %></i>
+  </p>
 
-  <% if @fanfics %>
+  <% unless @fanfics.nil? %>
   <ul class="search_results">
     <% @fanfics.each do |fanfic| %>
       <li>
         <h3>
           <%= link_to fanfic.title, fanfic_path(fanfic) %>
         </h3>
-        <p><%= fanfic.description %></p>
       </li>
     <% end %>
   </ul>
   <% else %>
-    <p>Your search did not match any documents.</p>
+    <p><%= t("global.failed_search") %></p>
   <% end %>
 
   <br>

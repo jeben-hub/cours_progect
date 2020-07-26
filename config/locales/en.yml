@@ -46,6 +46,8 @@ en:
     new:
       fanfic: New fanfic
       chapter: New chapter
+    search: Search rezults
+    failed_search: Your search did not match any fanfics
     dark: Dark theme
     top: Top
     cloud: Tag cloud
@@ -58,7 +60,7 @@ en:
     forms:
       search: Search
       create: Create
-      submit: Save
+      save: Save
       comment: Comment
       add: Add
     title: Mordor - a technogenic civilization, discredited by the victors
@@ -76,3 +78,5 @@ en:
     not_delete: Can not delete this user
     successfully_activated: User was successfully activated
     not_activate: Cannot activate this user
+  error:
+    error_count: Errors count

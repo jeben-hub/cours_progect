@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
   skip_before_action :require_login, only: [:search]
   skip_before_action :require_not_blocked, only: [:search]
-  skip_before_action :require_activate, except: [:search]
+  skip_before_action :require_activate, only: [:search]
   before_action :set_term
   before_action :force_json, only: [:tag_search]
 
