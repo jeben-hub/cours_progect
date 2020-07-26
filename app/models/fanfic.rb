@@ -24,9 +24,7 @@ class Fanfic < ApplicationRecord
   end
 
   def self.top(count)
-    Fanfic.all.sort do |a, b|
-      b.midle_rating.to_f <=> a.midle_rating.to_f
-    end.first(count)
+    Fanfic.all.sort_by {&:midle_rating}.first(count)
   end
 
   def midle_rating
