@@ -60,7 +60,7 @@ class ChaptersController < ApplicationController
     end
 
     def upload_picture_chapter_params
-      delete_exist_picture
+      #delete_exist_picture if @chapter
       upload_rezult = Cloudinary::Uploader.upload(@image)
       chapter_params.merge(picture: upload_rezult['secure_url'])
     end
