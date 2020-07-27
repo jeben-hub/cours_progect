@@ -1,24 +1,6 @@
 # README
+Сourse project
+Курсовой проект
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+Site for fanfiction ("Mordor - a technogenic civilization, discredited by the winners")
+Сайт для фанфиков ("Мордор — техногенная цивилизация, опороченная победителями")
