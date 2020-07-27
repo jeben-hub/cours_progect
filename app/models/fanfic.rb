@@ -26,11 +26,11 @@ class Fanfic < ApplicationRecord
   end
 
   def self.top(count)
-    Fanfic.all.sort_by {|fanfic| fanfic.midle_rating}.first(count)
+    Fanfic.all.sort {|a, b| b.midle_rating <=> a.midle_rating }.first(count)
   end
 
   def midle_rating
-    return 0 if (rates = self.rating.all).empty?
+    return 1 if (rates = self.rating.all).empty?
     rates.map(&:rate).sum.to_f / rates.count
   end
 

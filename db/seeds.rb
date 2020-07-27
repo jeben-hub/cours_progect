@@ -37,3 +37,5 @@ genres = [
 genres.each  do |genre|
   Genre.create(name: genre)
 end
+
+User.create(name: "admin", email: "a@mail.com", password: "123321", admin: true, activation_state: "active")
