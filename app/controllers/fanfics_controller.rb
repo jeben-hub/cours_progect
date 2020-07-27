@@ -5,8 +5,7 @@ class FanficsController < ApplicationController
   skip_before_action :require_not_blocked, only: [:index, :show]
   skip_before_action :require_activate, except: [:create, :new]
   before_action :require_asses_to_fanfics, except: [:index, :show]
-  # GET /fanfics
-  # GET /fanfics.json
+
   def index
     @top_fanfics = Fanfic.top(5)
     if @tag_name = params[:tag]
@@ -16,25 +15,20 @@ class FanficsController < ApplicationController
     end
   end
 
-  # GET /fanfics/1
-  # GET /fanfics/1.json
   def show
     @chapters = @fanfic.chapters
     @comments = @fanfic.comments.order(created_at: :desc)
   end
 
-  # GET /fanfics/new
+
   def new
     @fanfic = Fanfic.new
     @user_id = params[:user_id]
   end
 
-  # GET /fanfics/1/edit
   def edit
   end
 
-  # POST /fanfics
-  # POST /fanfics.json
   def create
     @fanfic = Fanfic.new(fanfic_params)
     @fanfic.user_id = params[:user_id]
@@ -49,8 +43,6 @@ class FanficsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /fanfics/1
-  # PATCH/PUT /fanfics/1.json
   def update
     respond_to do |format|
       if @fanfic.update(fanfic_params)
@@ -63,8 +55,6 @@ class FanficsController < ApplicationController
     end
   end
 
-  # DELETE /fanfics/1
-  # DELETE /fanfics/1.json
   def destroy
     @fanfic.destroy
     respond_to do |format|
@@ -75,12 +65,10 @@ class FanficsController < ApplicationController
 
   private
 
-    # Use callbacks to share common setup or constraints between actions.
     def set_fanfic
       @fanfic = Fanfic.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def fanfic_params
       params.require(:fanfic).permit(:title, :description, :genre_id, :all_tags)
     end
