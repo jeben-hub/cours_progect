@@ -110,12 +110,12 @@ class UsersController < ApplicationController
 
   def admin_protect
     return unless @user.admin?
-    redirect_back fallback_location: root_path, alert: t("notice.asses")
+    redirect_back fallback_location: root_path, alert: t("notice.access")
   end
 
   def require_admin
     return if current_user.admin?
-    redirect_back_or_to root_path, alert: t("notice.asses")
+    redirect_back_or_to root_path, alert: t("notice.access")
   end
 
   def set_user
