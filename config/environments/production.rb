@@ -62,7 +62,7 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "MordorBlog_production"
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_url_options = { :host => 'majestic-grand-canyon-79796.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'mordor-fanfic.herokuapp.com' }
   config.action_mailer.smtp_settings = {
       :address              => 'smtp.gmail.com',
       :port                 => 587,
